@@ -8,6 +8,8 @@
 
 #import "DetailViewController.h"
 
+#import "NJOSkitchService.h"
+
 @interface DetailViewController (Private)
 - (void)configureView;
 @end
@@ -68,5 +70,25 @@
     // Return YES for supported orientations
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
+
+#pragma mark - Button handlers
+- (void)handleUploadAsPngTapped:(id)sender {
+    NSLog(@"handleUploadAsPngTapped");
+
+    NJOSkitchService *s = [[NJOSkitchService alloc] init];
+    [s addImageAsPng:_imageView.image name:[_filePath lastPathComponent]];
+
+    [s release];
+}
+
+- (void)handleUploadAsJpegTapped:(id)sender {
+    NSLog(@"handleUploadAsJpegTapped");
+
+    NJOSkitchService *s = [[NJOSkitchService alloc] init];
+    [s addImageAsJpeg:_imageView.image name:[_filePath lastPathComponent]];
+    
+    [s release];    
+}
+
 
 @end

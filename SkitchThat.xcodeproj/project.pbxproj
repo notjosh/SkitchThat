@@ -37,6 +37,7 @@
 		94BBF91E13B0BB090066D1E3 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF91113B0BB090066D1E3 /* ASIHTTPRequest.m */; };
 		94BBF91F13B0BB090066D1E3 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF91513B0BB090066D1E3 /* ASIInputStream.m */; };
 		94BBF92013B0BB090066D1E3 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF91713B0BB090066D1E3 /* ASINetworkQueue.m */; };
+		94BBF92513B0BD430066D1E3 /* NJOSkitchService.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF92413B0BD430066D1E3 /* NJOSkitchService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,8 @@
 		94BBF91613B0BB090066D1E3 /* ASINetworkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASINetworkQueue.h; path = Externals/ASIHTTPRequest/Classes/ASINetworkQueue.h; sourceTree = SOURCE_ROOT; };
 		94BBF91713B0BB090066D1E3 /* ASINetworkQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASINetworkQueue.m; path = Externals/ASIHTTPRequest/Classes/ASINetworkQueue.m; sourceTree = SOURCE_ROOT; };
 		94BBF91813B0BB090066D1E3 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIProgressDelegate.h; path = Externals/ASIHTTPRequest/Classes/ASIProgressDelegate.h; sourceTree = SOURCE_ROOT; };
+		94BBF92313B0BD430066D1E3 /* NJOSkitchService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NJOSkitchService.h; path = Library/Skitch/NJOSkitchService.h; sourceTree = "<group>"; };
+		94BBF92413B0BD430066D1E3 /* NJOSkitchService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NJOSkitchService.m; path = Library/Skitch/NJOSkitchService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +148,7 @@
 		94BBF8A413B0B4110066D1E3 /* SkitchThat */ = {
 			isa = PBXGroup;
 			children = (
+				94BBF92113B0BBD10066D1E3 /* Library */,
 				94BBF8D113B0B98E0066D1E3 /* Externals */,
 				94BBF8AD13B0B4110066D1E3 /* SkitchThatAppDelegate.h */,
 				94BBF8AE13B0B4110066D1E3 /* SkitchThatAppDelegate.m */,
@@ -255,6 +259,23 @@
 			path = Externals/ASIHTTPRequest/External/Reachability;
 			sourceTree = SOURCE_ROOT;
 		};
+		94BBF92113B0BBD10066D1E3 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				94BBF92213B0BBDF0066D1E3 /* Skitch */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
+		94BBF92213B0BBDF0066D1E3 /* Skitch */ = {
+			isa = PBXGroup;
+			children = (
+				94BBF92313B0BD430066D1E3 /* NJOSkitchService.h */,
+				94BBF92413B0BD430066D1E3 /* NJOSkitchService.m */,
+			);
+			name = Skitch;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -335,6 +356,7 @@
 				94BBF91E13B0BB090066D1E3 /* ASIHTTPRequest.m in Sources */,
 				94BBF91F13B0BB090066D1E3 /* ASIInputStream.m in Sources */,
 				94BBF92013B0BB090066D1E3 /* ASINetworkQueue.m in Sources */,
+				94BBF92513B0BD430066D1E3 /* NJOSkitchService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

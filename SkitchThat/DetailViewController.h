@@ -17,4 +17,7 @@
 @property (retain, nonatomic) NSString *filePath;
 @property (retain, nonatomic) IBOutlet UIImageView *imageView;
 
+- (IBAction)handleUploadAsPngTapped:(id)sender;
+- (IBAction)handleUploadAsJpegTapped:(id)sender;
+
 @end
