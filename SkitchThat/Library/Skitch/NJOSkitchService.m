@@ -65,6 +65,29 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
          objectSize:[objectString length]];
 }
 
+- (void)fetchObject:(NSString *)guid {
+    NSURL *url = [self urlForPath:[NSString stringWithFormat:@"/api/1.0/objects/info/%@", guid]];
+
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    
+    [request setCompletionBlock:^(void) {
+        // Use when fetching text data
+        NSString *responseString = [request responseString];
+
+        NSLog(@"Complete!");
+        NSLog(@"%@", responseString);
+    }];
+    
+    [request setFailedBlock:^(void) {
+        NSLog(@"Error!");
+        
+        NSError *error = [request error];
+        NSLog(@"%@", [error localizedDescription]);
+    }];
+    
+    [request startAsynchronous];
+}
+
 @end
 
 @implementation NJOSkitchService (SkitchRawAPI)

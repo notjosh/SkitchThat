@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		425FD0D913B147D300D51E52 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 425FD0D813B147D300D51E52 /* MBProgressHUD.m */; };
+		425FD0DD13B1551B00D51E52 /* ObjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 425FD0DB13B1551A00D51E52 /* ObjectViewController.m */; };
+		425FD0DE13B1551B00D51E52 /* ObjectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 425FD0DC13B1551A00D51E52 /* ObjectViewController.xib */; };
 		94BBF89F13B0B4110066D1E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BBF89E13B0B4110066D1E3 /* UIKit.framework */; };
 		94BBF8A113B0B4110066D1E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BBF8A013B0B4110066D1E3 /* Foundation.framework */; };
 		94BBF8A313B0B4110066D1E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BBF8A213B0B4110066D1E3 /* CoreGraphics.framework */; };
@@ -53,6 +55,9 @@
 		425FD0D613B1428600D51E52 /* NJOSkitchServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NJOSkitchServiceDelegate.h; path = Library/Skitch/NJOSkitchServiceDelegate.h; sourceTree = "<group>"; };
 		425FD0D713B147D300D51E52 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Externals/MBProgressHUD/MBProgressHUD.h; sourceTree = SOURCE_ROOT; };
 		425FD0D813B147D300D51E52 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Externals/MBProgressHUD/MBProgressHUD.m; sourceTree = SOURCE_ROOT; };
+		425FD0DA13B1551900D51E52 /* ObjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectViewController.h; sourceTree = "<group>"; };
+		425FD0DB13B1551A00D51E52 /* ObjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectViewController.m; sourceTree = "<group>"; };
+		425FD0DC13B1551A00D51E52 /* ObjectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ObjectViewController.xib; sourceTree = "<group>"; };
 		94BBF89A13B0B4110066D1E3 /* SkitchThat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkitchThat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94BBF89E13B0B4110066D1E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		94BBF8A013B0B4110066D1E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -201,6 +206,9 @@
 				94F86E3213B0E20A00202524 /* CredentialsViewController.m */,
 				94F86E3313B0E20A00202524 /* CredentialsViewController.xib */,
 				94BBF8A513B0B4110066D1E3 /* Supporting Files */,
+				425FD0DA13B1551900D51E52 /* ObjectViewController.h */,
+				425FD0DB13B1551A00D51E52 /* ObjectViewController.m */,
+				425FD0DC13B1551A00D51E52 /* ObjectViewController.xib */,
 			);
 			path = SkitchThat;
 			sourceTree = "<group>";
@@ -410,6 +418,7 @@
 				94BBF8CB13B0B5E80066D1E3 /* Tofu-nutrition-blocks.jpg in Resources */,
 				94BBF8D013B0B6720066D1E3 /* DetailViewController.xib in Resources */,
 				94F86E3513B0E20A00202524 /* CredentialsViewController.xib in Resources */,
+				425FD0DE13B1551B00D51E52 /* ObjectViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +450,7 @@
 				94F86E3D13B0E72900202524 /* SFHFKeychainUtils.m in Sources */,
 				94F86E4313B0FA2F00202524 /* NSString+MD5.m in Sources */,
 				425FD0D913B147D300D51E52 /* MBProgressHUD.m in Sources */,
+				425FD0DD13B1551B00D51E52 /* ObjectViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

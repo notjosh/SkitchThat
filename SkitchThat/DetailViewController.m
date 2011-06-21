@@ -7,6 +7,7 @@
 //
 
 #import "DetailViewController.h"
+#import "ObjectViewController.h"
 
 #import "NJOSkitchService.h"
 #import "NJOSkitchServiceDelegate.h"
@@ -115,6 +116,15 @@
     [s release];
 }
 
+- (void)handleMockGuidTapped:(id)sender {
+    NSLog(@"handleUploadAsJpegTapped");
+    
+    ObjectViewController *objectViewController = [[ObjectViewController alloc] initWithNibName:@"ObjectViewController" bundle:nil];
+    objectViewController.guid = @"48809c-46fd1b-4d6d92-ea709f-524ab7-a7";
+    [self.navigationController pushViewController:objectViewController animated:YES];
+    [objectViewController release];
+}
+
 - (void)setHudProgress:(float)progress {
     [_hud setProgress:progress];
     [_hud setDetailsLabelText:[NSString stringWithFormat:@"%0.0f%%", progress * 100]];
@@ -140,7 +150,12 @@
         return;
     }
 
-    
+    NSString *guid = [[response skitchResponse] objectForKey:@"guid"];
+
+    ObjectViewController *objectViewController = [[ObjectViewController alloc] initWithNibName:@"ObjectViewController" bundle:nil];
+    objectViewController.guid = guid;
+    [self.navigationController pushViewController:objectViewController animated:YES];
+    [objectViewController release];
 }
 
 @end

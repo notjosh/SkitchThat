@@ -27,4 +27,6 @@ extern CGFloat const kNJOSkitchServiceJpegCompressionQuality;
 - (void)addImageAsJpeg:(UIImage *)image name:(NSString *)name;
 - (void)addImage:(UIImage *)image type:(NSString *)type name:(NSString *)name;
 
+- (void)fetchObject:(NSString *)guid;
+
 @end

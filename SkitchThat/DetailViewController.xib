@@ -68,6 +68,12 @@
 								<int key="IBUIStyle">1</int>
 								<reference key="IBUIToolbar" ref="937975928"/>
 							</object>
+							<object class="IBUIBarButtonItem" id="426655123">
+								<string key="IBUITitle">GUIDo</string>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<int key="IBUIStyle">1</int>
+								<reference key="IBUIToolbar" ref="937975928"/>
+							</object>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="632710357">
@@ -135,6 +141,14 @@
 					</object>
 					<int key="connectionID">12</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">handleMockGuidTapped:</string>
+						<reference key="source" ref="426655123"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">14</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -173,6 +187,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="675279374"/>
 							<reference ref="313013156"/>
+							<reference ref="426655123"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -191,6 +206,11 @@
 						<reference key="object" ref="313013156"/>
 						<reference key="parent" ref="937975928"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">13</int>
+						<reference key="object" ref="426655123"/>
+						<reference key="parent" ref="937975928"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -201,6 +221,7 @@
 					<string>-2.CustomClassName</string>
 					<string>1.IBEditorWindowLastContentRect</string>
 					<string>1.IBPluginDependency</string>
+					<string>13.IBPluginDependency</string>
 					<string>5.IBPluginDependency</string>
 					<string>6.IBPluginDependency</string>
 					<string>7.IBPluginDependency</string>
@@ -211,6 +232,7 @@
 					<string>DetailViewController</string>
 					<string>UIResponder</string>
 					<string>{{556, 412}, {320, 480}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -230,7 +252,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">12</int>
+			<int key="maxID">14</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -242,11 +264,13 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>handleMockGuidTapped:</string>
 							<string>handleUploadAsJpegTapped:</string>
 							<string>handleUploadAsPngTapped:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
@@ -255,11 +279,16 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>handleMockGuidTapped:</string>
 							<string>handleUploadAsJpegTapped:</string>
 							<string>handleUploadAsPngTapped:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">handleMockGuidTapped:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 							<object class="IBActionInfo">
 								<string key="name">handleUploadAsJpegTapped:</string>
 								<string key="candidateClassName">id</string>

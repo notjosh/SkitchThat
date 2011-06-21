@@ -24,5 +24,6 @@
 
 - (IBAction)handleUploadAsPngTapped:(id)sender;
 - (IBAction)handleUploadAsJpegTapped:(id)sender;
+- (IBAction)handleMockGuidTapped:(id)sender;
 
 @end
