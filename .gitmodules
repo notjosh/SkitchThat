@@ -1,9 +1,9 @@
 [submodule "Externals/ASIHTTPRequest"]
 	path = Externals/ASIHTTPRequest
 	url = https://github.com/pokeb/asi-http-request.git
-[submodule "Externals/XML-to-NSDictionary"]
-	path = Externals/XML-to-NSDictionary
-	url = https://notjosh@github.com/notjosh/XML-to-NSDictionary.git
 [submodule "Externals/scifihifi-iphone"]
 	path = Externals/scifihifi-iphone
 	url = https://github.com/ldandersen/scifihifi-iphone.git
+[submodule "Externals/XML-to-NSDictionary"]
+	path = Externals/XML-to-NSDictionary
+	url = https://github.com/notjosh/XML-to-NSDictionary.git
