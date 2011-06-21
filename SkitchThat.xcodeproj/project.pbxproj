@@ -45,6 +45,7 @@
 		94F86E3913B0E4B500202524 /* NJOSkitchConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F86E3813B0E4B500202524 /* NJOSkitchConfig.m */; };
 		94F86E3D13B0E72900202524 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F86E3C13B0E72900202524 /* SFHFKeychainUtils.m */; };
 		94F86E3F13B0EBC500202524 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94F86E3E13B0EBC500202524 /* Security.framework */; };
+		94F86E4313B0FA2F00202524 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F86E4213B0FA2F00202524 /* NSString+MD5.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +113,8 @@
 		94F86E3B13B0E72900202524 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFKeychainUtils.h; path = "Externals/scifihifi-iphone/security/SFHFKeychainUtils.h"; sourceTree = SOURCE_ROOT; };
 		94F86E3C13B0E72900202524 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFKeychainUtils.m; path = "Externals/scifihifi-iphone/security/SFHFKeychainUtils.m"; sourceTree = SOURCE_ROOT; };
 		94F86E3E13B0EBC500202524 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		94F86E4113B0FA2F00202524 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+MD5.h"; path = "Utilities/NSString+MD5.h"; sourceTree = "<group>"; };
+		94F86E4213B0FA2F00202524 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+MD5.m"; path = "Utilities/NSString+MD5.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +172,7 @@
 		94BBF8A413B0B4110066D1E3 /* SkitchThat */ = {
 			isa = PBXGroup;
 			children = (
+				94F86E4013B0FA1500202524 /* Utilities */,
 				94BBF92113B0BBD10066D1E3 /* Library */,
 				94BBF8D113B0B98E0066D1E3 /* Externals */,
 				94BBF8AD13B0B4110066D1E3 /* SkitchThatAppDelegate.h */,
@@ -324,6 +328,15 @@
 			name = SFHFKeychainUtils;
 			sourceTree = "<group>";
 		};
+		94F86E4013B0FA1500202524 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				94F86E4113B0FA2F00202524 /* NSString+MD5.h */,
+				94F86E4213B0FA2F00202524 /* NSString+MD5.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -411,6 +424,7 @@
 				94F86E3413B0E20A00202524 /* CredentialsViewController.m in Sources */,
 				94F86E3913B0E4B500202524 /* NJOSkitchConfig.m in Sources */,
 				94F86E3D13B0E72900202524 /* SFHFKeychainUtils.m in Sources */,
+				94F86E4313B0FA2F00202524 /* NSString+MD5.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

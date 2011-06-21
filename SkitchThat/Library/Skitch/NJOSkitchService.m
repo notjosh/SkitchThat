@@ -8,6 +8,8 @@
 
 #import "NJOSkitchService.h"
 
+#import "NSString+MD5.h"
+
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
 
@@ -23,6 +25,7 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
 - (void)addObject:(NSData *)objectData type:(NSString *)type name:(NSString *)name objectSize:(NSUInteger)size;
 
 - (NSURL *)urlForPath:(NSString *)path;
+- (NSURL *)urlForPath:(NSString *)path parameters:(NSDictionary *)parameters;
 @end
 
 @implementation NJOSkitchService
@@ -63,12 +66,15 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
 @implementation NJOSkitchService (SkitchRawAPI)
 
 - (void)addObject:(NSData *)objectData type:(NSString *)type name:(NSString *)name objectSize:(NSUInteger)size {
-    NSURL *url = [self urlForPath:@"/services/addObject/"];
-    
     NSString *username = [[NJOSkitchConfig sharedNJOSkitchConfig] username];
     NSString *password = [[NJOSkitchConfig sharedNJOSkitchConfig] password];
 
-    NSLog(@"credentials: %@, %@", username, password);
+    NSURL *url = [self urlForPath:@"/services/addObject/"
+                       parameters:[NSDictionary dictionaryWithObjectsAndKeys:username, @"username",
+                                                                             [password MD5], @"password",
+                                   nil]];
+
+    NSLog(@"%@", url);
 
     __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setPostValue:type forKey:@"objectType"];
@@ -100,6 +106,28 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
 
 - (NSURL *)urlForPath:(NSString *)path {
     return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", @"https://skitch.com", path]];
+}
+
+- (NSURL *)urlForPath:(NSString *)path parameters:(NSDictionary *)parameters {
+    NSMutableString *queryString = [NSMutableString string];
+
+    for (NSString *key in parameters) {
+        if ([queryString length] > 0) {
+            [queryString appendFormat:@"&"];
+        }
+
+        NSString *parameter = [parameters objectForKey:key];
+
+        [queryString appendFormat:@"%@=%@", [key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], [parameter stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    }
+
+    NSMutableString *mPath = [path mutableCopy];
+
+    if ([queryString length] > 0) {
+        [mPath appendFormat:@"?%@", queryString];
+    }
+
+    return [self urlForPath:mPath];
 }
 
 @end
