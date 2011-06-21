@@ -1,0 +1,283 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		94BBF89F13B0B4110066D1E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BBF89E13B0B4110066D1E3 /* UIKit.framework */; };
+		94BBF8A113B0B4110066D1E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BBF8A013B0B4110066D1E3 /* Foundation.framework */; };
+		94BBF8A313B0B4110066D1E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BBF8A213B0B4110066D1E3 /* CoreGraphics.framework */; };
+		94BBF8A913B0B4110066D1E3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94BBF8A713B0B4110066D1E3 /* InfoPlist.strings */; };
+		94BBF8AC13B0B4110066D1E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF8AB13B0B4110066D1E3 /* main.m */; };
+		94BBF8AF13B0B4110066D1E3 /* SkitchThatAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF8AE13B0B4110066D1E3 /* SkitchThatAppDelegate.m */; };
+		94BBF8B213B0B4110066D1E3 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BBF8B013B0B4110066D1E3 /* MainWindow.xib */; };
+		94BBF8B513B0B4110066D1E3 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF8B413B0B4110066D1E3 /* RootViewController.m */; };
+		94BBF8B813B0B4110066D1E3 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BBF8B613B0B4110066D1E3 /* RootViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		94BBF89A13B0B4110066D1E3 /* SkitchThat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkitchThat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		94BBF89E13B0B4110066D1E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		94BBF8A013B0B4110066D1E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		94BBF8A213B0B4110066D1E3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		94BBF8A613B0B4110066D1E3 /* SkitchThat-Info.plist */ = {isa = PBXFileReference; path = "SkitchThat-Info.plist"; sourceTree = "<group>"; };
+		94BBF8A813B0B4110066D1E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		94BBF8AA13B0B4110066D1E3 /* SkitchThat-Prefix.pch */ = {isa = PBXFileReference; path = "SkitchThat-Prefix.pch"; sourceTree = "<group>"; };
+		94BBF8AB13B0B4110066D1E3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		94BBF8AD13B0B4110066D1E3 /* SkitchThatAppDelegate.h */ = {isa = PBXFileReference; path = SkitchThatAppDelegate.h; sourceTree = "<group>"; };
+		94BBF8AE13B0B4110066D1E3 /* SkitchThatAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SkitchThatAppDelegate.m; sourceTree = "<group>"; };
+		94BBF8B113B0B4110066D1E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		94BBF8B313B0B4110066D1E3 /* RootViewController.h */ = {isa = PBXFileReference; path = RootViewController.h; sourceTree = "<group>"; };
+		94BBF8B413B0B4110066D1E3 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		94BBF8B713B0B4110066D1E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		94BBF89713B0B4110066D1E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94BBF89F13B0B4110066D1E3 /* UIKit.framework in Frameworks */,
+				94BBF8A113B0B4110066D1E3 /* Foundation.framework in Frameworks */,
+				94BBF8A313B0B4110066D1E3 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		94BBF88F13B0B4110066D1E3 = {
+			isa = PBXGroup;
+			children = (
+				94BBF8A413B0B4110066D1E3 /* SkitchThat */,
+				94BBF89D13B0B4110066D1E3 /* Frameworks */,
+				94BBF89B13B0B4110066D1E3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		94BBF89B13B0B4110066D1E3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				94BBF89A13B0B4110066D1E3 /* SkitchThat.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		94BBF89D13B0B4110066D1E3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				94BBF89E13B0B4110066D1E3 /* UIKit.framework */,
+				94BBF8A013B0B4110066D1E3 /* Foundation.framework */,
+				94BBF8A213B0B4110066D1E3 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		94BBF8A413B0B4110066D1E3 /* SkitchThat */ = {
+			isa = PBXGroup;
+			children = (
+				94BBF8AD13B0B4110066D1E3 /* SkitchThatAppDelegate.h */,
+				94BBF8AE13B0B4110066D1E3 /* SkitchThatAppDelegate.m */,
+				94BBF8B013B0B4110066D1E3 /* MainWindow.xib */,
+				94BBF8B313B0B4110066D1E3 /* RootViewController.h */,
+				94BBF8B413B0B4110066D1E3 /* RootViewController.m */,
+				94BBF8B613B0B4110066D1E3 /* RootViewController.xib */,
+				94BBF8A513B0B4110066D1E3 /* Supporting Files */,
+			);
+			path = SkitchThat;
+			sourceTree = "<group>";
+		};
+		94BBF8A513B0B4110066D1E3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				94BBF8A613B0B4110066D1E3 /* SkitchThat-Info.plist */,
+				94BBF8A713B0B4110066D1E3 /* InfoPlist.strings */,
+				94BBF8AA13B0B4110066D1E3 /* SkitchThat-Prefix.pch */,
+				94BBF8AB13B0B4110066D1E3 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		94BBF89913B0B4110066D1E3 /* SkitchThat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94BBF8BB13B0B4110066D1E3 /* Build configuration list for PBXNativeTarget "SkitchThat" */;
+			buildPhases = (
+				94BBF89613B0B4110066D1E3 /* Sources */,
+				94BBF89713B0B4110066D1E3 /* Frameworks */,
+				94BBF89813B0B4110066D1E3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SkitchThat;
+			productName = SkitchThat;
+			productReference = 94BBF89A13B0B4110066D1E3 /* SkitchThat.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		94BBF89113B0B4110066D1E3 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 94BBF89413B0B4110066D1E3 /* Build configuration list for PBXProject "SkitchThat" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 94BBF88F13B0B4110066D1E3;
+			productRefGroup = 94BBF89B13B0B4110066D1E3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				94BBF89913B0B4110066D1E3 /* SkitchThat */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		94BBF89813B0B4110066D1E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94BBF8A913B0B4110066D1E3 /* InfoPlist.strings in Resources */,
+				94BBF8B213B0B4110066D1E3 /* MainWindow.xib in Resources */,
+				94BBF8B813B0B4110066D1E3 /* RootViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		94BBF89613B0B4110066D1E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94BBF8AC13B0B4110066D1E3 /* main.m in Sources */,
+				94BBF8AF13B0B4110066D1E3 /* SkitchThatAppDelegate.m in Sources */,
+				94BBF8B513B0B4110066D1E3 /* RootViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		94BBF8A713B0B4110066D1E3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				94BBF8A813B0B4110066D1E3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		94BBF8B013B0B4110066D1E3 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				94BBF8B113B0B4110066D1E3 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		94BBF8B613B0B4110066D1E3 /* RootViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				94BBF8B713B0B4110066D1E3 /* en */,
+			);
+			name = RootViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		94BBF8B913B0B4110066D1E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		94BBF8BA13B0B4110066D1E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		94BBF8BC13B0B4110066D1E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SkitchThat/SkitchThat-Prefix.pch";
+				INFOPLIST_FILE = "SkitchThat/SkitchThat-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		94BBF8BD13B0B4110066D1E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SkitchThat/SkitchThat-Prefix.pch";
+				INFOPLIST_FILE = "SkitchThat/SkitchThat-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		94BBF89413B0B4110066D1E3 /* Build configuration list for PBXProject "SkitchThat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94BBF8B913B0B4110066D1E3 /* Debug */,
+				94BBF8BA13B0B4110066D1E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		94BBF8BB13B0B4110066D1E3 /* Build configuration list for PBXNativeTarget "SkitchThat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94BBF8BC13B0B4110066D1E3 /* Debug */,
+				94BBF8BD13B0B4110066D1E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 94BBF89113B0B4110066D1E3 /* Project object */;
+}
