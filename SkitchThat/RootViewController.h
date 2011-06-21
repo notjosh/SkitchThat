@@ -12,5 +12,6 @@
     NSMutableArray *_files;
 }
 
+- (IBAction)handleConfigTapped:(id)sender;
 
 @end

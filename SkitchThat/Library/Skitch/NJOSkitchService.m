@@ -11,6 +11,7 @@
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
 
+#import "NJOSkitchConfig.h"
 #import "NJOSkitchResponse.h"
 
 NSString * const kNJOSkitchServiceTypeJpeg = @"image/jpeg";
@@ -63,6 +64,11 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
 
 - (void)addObject:(NSData *)objectData type:(NSString *)type name:(NSString *)name objectSize:(NSUInteger)size {
     NSURL *url = [self urlForPath:@"/services/addObject/"];
+    
+    NSString *username = [[NJOSkitchConfig sharedNJOSkitchConfig] username];
+    NSString *password = [[NJOSkitchConfig sharedNJOSkitchConfig] password];
+
+    NSLog(@"credentials: %@, %@", username, password);
 
     __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setPostValue:type forKey:@"objectType"];

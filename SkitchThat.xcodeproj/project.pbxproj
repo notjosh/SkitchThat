@@ -40,6 +40,11 @@
 		94BBF92513B0BD430066D1E3 /* NJOSkitchService.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF92413B0BD430066D1E3 /* NJOSkitchService.m */; };
 		94BBF92813B0C6AA0066D1E3 /* NJOSkitchResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF92713B0C6AA0066D1E3 /* NJOSkitchResponse.m */; };
 		94BBF93413B0D11A0066D1E3 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF93313B0D11A0066D1E3 /* XMLReader.m */; };
+		94F86E3413B0E20A00202524 /* CredentialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F86E3213B0E20A00202524 /* CredentialsViewController.m */; };
+		94F86E3513B0E20A00202524 /* CredentialsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94F86E3313B0E20A00202524 /* CredentialsViewController.xib */; };
+		94F86E3913B0E4B500202524 /* NJOSkitchConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F86E3813B0E4B500202524 /* NJOSkitchConfig.m */; };
+		94F86E3D13B0E72900202524 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F86E3C13B0E72900202524 /* SFHFKeychainUtils.m */; };
+		94F86E3F13B0EBC500202524 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94F86E3E13B0EBC500202524 /* Security.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +104,14 @@
 		94BBF92713B0C6AA0066D1E3 /* NJOSkitchResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NJOSkitchResponse.m; path = Library/Skitch/NJOSkitchResponse.m; sourceTree = "<group>"; };
 		94BBF93213B0D11A0066D1E3 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReader.h; path = "Externals/XML-to-NSDictioary/XMLReader.h"; sourceTree = SOURCE_ROOT; };
 		94BBF93313B0D11A0066D1E3 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReader.m; path = "Externals/XML-to-NSDictioary/XMLReader.m"; sourceTree = SOURCE_ROOT; };
+		94F86E3113B0E20A00202524 /* CredentialsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CredentialsViewController.h; sourceTree = "<group>"; };
+		94F86E3213B0E20A00202524 /* CredentialsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CredentialsViewController.m; sourceTree = "<group>"; };
+		94F86E3313B0E20A00202524 /* CredentialsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CredentialsViewController.xib; sourceTree = "<group>"; };
+		94F86E3713B0E4B500202524 /* NJOSkitchConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NJOSkitchConfig.h; path = Library/Skitch/NJOSkitchConfig.h; sourceTree = "<group>"; };
+		94F86E3813B0E4B500202524 /* NJOSkitchConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NJOSkitchConfig.m; path = Library/Skitch/NJOSkitchConfig.m; sourceTree = "<group>"; };
+		94F86E3B13B0E72900202524 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFKeychainUtils.h; path = "Externals/scifihifi-iphone/security/SFHFKeychainUtils.h"; sourceTree = SOURCE_ROOT; };
+		94F86E3C13B0E72900202524 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFKeychainUtils.m; path = "Externals/scifihifi-iphone/security/SFHFKeychainUtils.m"; sourceTree = SOURCE_ROOT; };
+		94F86E3E13B0EBC500202524 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94F86E3F13B0EBC500202524 /* Security.framework in Frameworks */,
 				94BBF8FE13B0BA280066D1E3 /* libz.1.2.3.dylib in Frameworks */,
 				94BBF8A313B0B4110066D1E3 /* CoreGraphics.framework in Frameworks */,
 				94BBF8FB13B0BA150066D1E3 /* MobileCoreServices.framework in Frameworks */,
@@ -139,6 +153,7 @@
 		94BBF89D13B0B4110066D1E3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				94F86E3E13B0EBC500202524 /* Security.framework */,
 				94BBF8FD13B0BA280066D1E3 /* libz.1.2.3.dylib */,
 				94BBF8FC13B0BA1B0066D1E3 /* CoreGraphics.framework */,
 				94BBF8FA13B0BA150066D1E3 /* MobileCoreServices.framework */,
@@ -165,6 +180,9 @@
 				94BBF8CC13B0B6720066D1E3 /* DetailViewController.h */,
 				94BBF8CD13B0B6720066D1E3 /* DetailViewController.m */,
 				94BBF8CE13B0B6720066D1E3 /* DetailViewController.xib */,
+				94F86E3113B0E20A00202524 /* CredentialsViewController.h */,
+				94F86E3213B0E20A00202524 /* CredentialsViewController.m */,
+				94F86E3313B0E20A00202524 /* CredentialsViewController.xib */,
 				94BBF8A513B0B4110066D1E3 /* Supporting Files */,
 			);
 			path = SkitchThat;
@@ -207,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				94BBF8D213B0B9950066D1E3 /* ASIHTTPRequest */,
+				94F86E3A13B0E71100202524 /* SFHFKeychainUtils */,
 				94BBF93113B0D0F60066D1E3 /* XML-to-NSDictionary */,
 			);
 			name = Externals;
@@ -281,6 +300,8 @@
 				94BBF92413B0BD430066D1E3 /* NJOSkitchService.m */,
 				94BBF92613B0C6AA0066D1E3 /* NJOSkitchResponse.h */,
 				94BBF92713B0C6AA0066D1E3 /* NJOSkitchResponse.m */,
+				94F86E3713B0E4B500202524 /* NJOSkitchConfig.h */,
+				94F86E3813B0E4B500202524 /* NJOSkitchConfig.m */,
 			);
 			name = Skitch;
 			sourceTree = "<group>";
@@ -292,6 +313,15 @@
 				94BBF93313B0D11A0066D1E3 /* XMLReader.m */,
 			);
 			name = "XML-to-NSDictionary";
+			sourceTree = "<group>";
+		};
+		94F86E3A13B0E71100202524 /* SFHFKeychainUtils */ = {
+			isa = PBXGroup;
+			children = (
+				94F86E3B13B0E72900202524 /* SFHFKeychainUtils.h */,
+				94F86E3C13B0E72900202524 /* SFHFKeychainUtils.m */,
+			);
+			name = SFHFKeychainUtils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,6 +381,7 @@
 				94BBF8CA13B0B5E80066D1E3 /* svg.png in Resources */,
 				94BBF8CB13B0B5E80066D1E3 /* Tofu-nutrition-blocks.jpg in Resources */,
 				94BBF8D013B0B6720066D1E3 /* DetailViewController.xib in Resources */,
+				94F86E3513B0E20A00202524 /* CredentialsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +408,9 @@
 				94BBF92513B0BD430066D1E3 /* NJOSkitchService.m in Sources */,
 				94BBF92813B0C6AA0066D1E3 /* NJOSkitchResponse.m in Sources */,
 				94BBF93413B0D11A0066D1E3 /* XMLReader.m in Sources */,
+				94F86E3413B0E20A00202524 /* CredentialsViewController.m in Sources */,
+				94F86E3913B0E4B500202524 /* NJOSkitchConfig.m in Sources */,
+				94F86E3D13B0E72900202524 /* SFHFKeychainUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,6 +523,7 @@
 				94BBF8BD13B0B4110066D1E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

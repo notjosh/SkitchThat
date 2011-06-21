@@ -7,7 +7,10 @@
 //
 
 #import "RootViewController.h"
+#import "CredentialsViewController.h"
 #import "DetailViewController.h"
+
+#import "NJOSkitchConfig.h"
 
 @interface RootViewController (Private)
 - (NSArray *)recursivePathsForResourcesOfType:(NSString *)type inDirectory:(NSString *)directoryPath;
@@ -139,11 +142,22 @@
 */
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (![[NJOSkitchConfig sharedNJOSkitchConfig] hasCredentials]) {
+        NSLog(@"No skitch credentials. Set them first!");
+        return;
+    }
+
     DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
     detailViewController.filePath = [self pathForIndexPath:indexPath];
 
     [self.navigationController pushViewController:detailViewController animated:YES];
     [detailViewController release];
+}
+
+- (IBAction)handleConfigTapped:(id)sender {
+    CredentialsViewController *credentialsViewController = [[CredentialsViewController alloc] initWithNibName:@"CredentialsViewController" bundle:nil];
+    [self.navigationController presentModalViewController:credentialsViewController animated:YES];
+    [credentialsViewController release];
 }
 
 @end
