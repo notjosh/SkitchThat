@@ -75,13 +75,6 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
                        parameters:[NSDictionary dictionaryWithObjectsAndKeys:username,       @"username",
                                                                              [password MD5], @"password",
                                    nil]];
-    
-    NSLog(@"%@", url);
-    NSLog(@"%@", type);
-    NSLog(@"%@", name);
-    NSLog(@"%@", [NSNumber numberWithUnsignedInteger:size]);
-//    NSLog(@"%@", data);
-    
 
     __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setPostFormat:ASIURLEncodedPostFormat];
