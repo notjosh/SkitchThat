@@ -16,6 +16,14 @@
 		94BBF8B213B0B4110066D1E3 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BBF8B013B0B4110066D1E3 /* MainWindow.xib */; };
 		94BBF8B513B0B4110066D1E3 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF8B413B0B4110066D1E3 /* RootViewController.m */; };
 		94BBF8B813B0B4110066D1E3 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BBF8B613B0B4110066D1E3 /* RootViewController.xib */; };
+		94BBF8C613B0B5E80066D1E3 /* fat32.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BBF8C013B0B5E80066D1E3 /* fat32.png */; };
+		94BBF8C713B0B5E80066D1E3 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BBF8C113B0B5E80066D1E3 /* logo.png */; };
+		94BBF8C813B0B5E80066D1E3 /* pumpkin_in_patch.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 94BBF8C213B0B5E80066D1E3 /* pumpkin_in_patch.jpg */; };
+		94BBF8C913B0B5E80066D1E3 /* skitch.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BBF8C313B0B5E80066D1E3 /* skitch.png */; };
+		94BBF8CA13B0B5E80066D1E3 /* svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BBF8C413B0B5E80066D1E3 /* svg.png */; };
+		94BBF8CB13B0B5E80066D1E3 /* Tofu-nutrition-blocks.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 94BBF8C513B0B5E80066D1E3 /* Tofu-nutrition-blocks.jpg */; };
+		94BBF8CF13B0B6720066D1E3 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF8CD13B0B6720066D1E3 /* DetailViewController.m */; };
+		94BBF8D013B0B6720066D1E3 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BBF8CE13B0B6720066D1E3 /* DetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,16 +31,25 @@
 		94BBF89E13B0B4110066D1E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		94BBF8A013B0B4110066D1E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		94BBF8A213B0B4110066D1E3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		94BBF8A613B0B4110066D1E3 /* SkitchThat-Info.plist */ = {isa = PBXFileReference; path = "SkitchThat-Info.plist"; sourceTree = "<group>"; };
+		94BBF8A613B0B4110066D1E3 /* SkitchThat-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SkitchThat-Info.plist"; sourceTree = "<group>"; };
 		94BBF8A813B0B4110066D1E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		94BBF8AA13B0B4110066D1E3 /* SkitchThat-Prefix.pch */ = {isa = PBXFileReference; path = "SkitchThat-Prefix.pch"; sourceTree = "<group>"; };
+		94BBF8AA13B0B4110066D1E3 /* SkitchThat-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SkitchThat-Prefix.pch"; sourceTree = "<group>"; };
 		94BBF8AB13B0B4110066D1E3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		94BBF8AD13B0B4110066D1E3 /* SkitchThatAppDelegate.h */ = {isa = PBXFileReference; path = SkitchThatAppDelegate.h; sourceTree = "<group>"; };
+		94BBF8AD13B0B4110066D1E3 /* SkitchThatAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SkitchThatAppDelegate.h; sourceTree = "<group>"; };
 		94BBF8AE13B0B4110066D1E3 /* SkitchThatAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SkitchThatAppDelegate.m; sourceTree = "<group>"; };
 		94BBF8B113B0B4110066D1E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		94BBF8B313B0B4110066D1E3 /* RootViewController.h */ = {isa = PBXFileReference; path = RootViewController.h; sourceTree = "<group>"; };
+		94BBF8B313B0B4110066D1E3 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		94BBF8B413B0B4110066D1E3 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		94BBF8B713B0B4110066D1E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
+		94BBF8C013B0B5E80066D1E3 /* fat32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fat32.png; path = Resources/Images/fat32.png; sourceTree = "<group>"; };
+		94BBF8C113B0B5E80066D1E3 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Resources/Images/logo.png; sourceTree = "<group>"; };
+		94BBF8C213B0B5E80066D1E3 /* pumpkin_in_patch.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = pumpkin_in_patch.jpg; path = Resources/Images/pumpkin_in_patch.jpg; sourceTree = "<group>"; };
+		94BBF8C313B0B5E80066D1E3 /* skitch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = skitch.png; path = Resources/Images/skitch.png; sourceTree = "<group>"; };
+		94BBF8C413B0B5E80066D1E3 /* svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = svg.png; path = Resources/Images/svg.png; sourceTree = "<group>"; };
+		94BBF8C513B0B5E80066D1E3 /* Tofu-nutrition-blocks.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Tofu-nutrition-blocks.jpg"; path = "Resources/Images/Tofu-nutrition-blocks.jpg"; sourceTree = "<group>"; };
+		94BBF8CC13B0B6720066D1E3 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = DetailViewController.h; sourceTree = "<group>"; };
+		94BBF8CD13B0B6720066D1E3 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		94BBF8CE13B0B6720066D1E3 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +102,9 @@
 				94BBF8B313B0B4110066D1E3 /* RootViewController.h */,
 				94BBF8B413B0B4110066D1E3 /* RootViewController.m */,
 				94BBF8B613B0B4110066D1E3 /* RootViewController.xib */,
+				94BBF8CC13B0B6720066D1E3 /* DetailViewController.h */,
+				94BBF8CD13B0B6720066D1E3 /* DetailViewController.m */,
+				94BBF8CE13B0B6720066D1E3 /* DetailViewController.xib */,
 				94BBF8A513B0B4110066D1E3 /* Supporting Files */,
 			);
 			path = SkitchThat;
@@ -93,12 +113,34 @@
 		94BBF8A513B0B4110066D1E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				94BBF8BE13B0B5B40066D1E3 /* Resources */,
 				94BBF8A613B0B4110066D1E3 /* SkitchThat-Info.plist */,
 				94BBF8A713B0B4110066D1E3 /* InfoPlist.strings */,
 				94BBF8AA13B0B4110066D1E3 /* SkitchThat-Prefix.pch */,
 				94BBF8AB13B0B4110066D1E3 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		94BBF8BE13B0B5B40066D1E3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				94BBF8BF13B0B5BB0066D1E3 /* Images */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		94BBF8BF13B0B5BB0066D1E3 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				94BBF8C013B0B5E80066D1E3 /* fat32.png */,
+				94BBF8C113B0B5E80066D1E3 /* logo.png */,
+				94BBF8C213B0B5E80066D1E3 /* pumpkin_in_patch.jpg */,
+				94BBF8C313B0B5E80066D1E3 /* skitch.png */,
+				94BBF8C413B0B5E80066D1E3 /* svg.png */,
+				94BBF8C513B0B5E80066D1E3 /* Tofu-nutrition-blocks.jpg */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +193,13 @@
 				94BBF8A913B0B4110066D1E3 /* InfoPlist.strings in Resources */,
 				94BBF8B213B0B4110066D1E3 /* MainWindow.xib in Resources */,
 				94BBF8B813B0B4110066D1E3 /* RootViewController.xib in Resources */,
+				94BBF8C613B0B5E80066D1E3 /* fat32.png in Resources */,
+				94BBF8C713B0B5E80066D1E3 /* logo.png in Resources */,
+				94BBF8C813B0B5E80066D1E3 /* pumpkin_in_patch.jpg in Resources */,
+				94BBF8C913B0B5E80066D1E3 /* skitch.png in Resources */,
+				94BBF8CA13B0B5E80066D1E3 /* svg.png in Resources */,
+				94BBF8CB13B0B5E80066D1E3 /* Tofu-nutrition-blocks.jpg in Resources */,
+				94BBF8D013B0B6720066D1E3 /* DetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +213,7 @@
 				94BBF8AC13B0B4110066D1E3 /* main.m in Sources */,
 				94BBF8AF13B0B4110066D1E3 /* SkitchThatAppDelegate.m in Sources */,
 				94BBF8B513B0B4110066D1E3 /* RootViewController.m in Sources */,
+				94BBF8CF13B0B6720066D1E3 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
