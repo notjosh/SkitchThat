@@ -37,23 +37,21 @@ static NSString *kNJOSkitchResponseRootResponseKey = @"skitchResponse";
 
         NSDictionary *response = [XMLReader dictionaryForXMLString:xml error:&error];
 
-        NSLog(@"%@", response);
-
         if (nil == error && nil != [response objectForKey:kNJOSkitchResponseRootResponseKey]) {
             NSMutableDictionary *skitchResponse = [[response objectForKey:kNJOSkitchResponseRootResponseKey] mutableCopy];
 
             _result = [[skitchResponse objectForKey:@"result"] intValue];
-            _message = [skitchResponse objectForKey:@"message"];
+            _message = [[skitchResponse objectForKey:@"message"] retain];
 
-            _version = [NSDecimalNumber decimalNumberWithString:[skitchResponse objectForKey:@"@version"]];
-            _noun = [skitchResponse objectForKey:@"@noun"];
+            _version = [[NSDecimalNumber decimalNumberWithString:[skitchResponse objectForKey:@"@version"]] retain];
+            _noun = [[skitchResponse objectForKey:@"@noun"] retain];
             
             [skitchResponse removeObjectForKey:@"result"];
             [skitchResponse removeObjectForKey:@"message"];
             [skitchResponse removeObjectForKey:@"@version"];
             [skitchResponse removeObjectForKey:@"@noun"];
 
-            _skitchResponse = [skitchResponse copy];
+            _skitchResponse = [[skitchResponse copy] retain];
         }
     }
 

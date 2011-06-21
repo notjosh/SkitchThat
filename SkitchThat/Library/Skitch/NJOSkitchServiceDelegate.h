@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@class NJOSkitchResponse;
+
 
 @protocol NJOSkitchServiceDelegate <NSObject>
 
 @optional
 - (void)transferProgress:(float)progress;
-- (void)transferComplete;
+- (void)transferComplete:(NJOSkitchResponse *)response;
 
 @end

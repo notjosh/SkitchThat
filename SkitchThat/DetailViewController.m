@@ -10,6 +10,7 @@
 
 #import "NJOSkitchService.h"
 #import "NJOSkitchServiceDelegate.h"
+#import "NJOSkitchResponse.h"
 
 #import "MBProgressHUD.h"
 
@@ -120,13 +121,26 @@
 }
 
 - (void)transferProgress:(float)progress {
-    NSLog(@"-> %0.2f", progress);
     [self setHudProgress:progress];
 }
 
-- (void)transferComplete {
+- (void)transferComplete:(NJOSkitchResponse *)response {
     NSLog(@"-> transferComplete");
+    NSLog(@"%@", response);
     [_hud hide:YES];
+
+    if ([response hasError]) {
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                     message:[response message]
+                                                    delegate:nil
+                                           cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [av show];
+        [av release];
+
+        return;
+    }
+
+    
 }
 
 @end

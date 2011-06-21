@@ -96,18 +96,16 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
     }];
 
     [request setCompletionBlock:^(void) {
-        NSLog(@"complete!");
-
         // Use when fetching text data
         NSString *responseString = [request responseString];
-        NSLog(@"%@", responseString);
 
         NJOSkitchResponse *response = [[NJOSkitchResponse alloc] initWithXmlString:responseString];
-        NSLog(@"%@", response);
 
-        if ([_delegate respondsToSelector:@selector(transferComplete)]) {
-            [_delegate transferComplete];
+        if ([_delegate respondsToSelector:@selector(transferComplete:)]) {
+            [_delegate transferComplete:response];
         }
+
+        [response release];
     }];
 
     [request setFailedBlock:^(void) {
@@ -117,7 +115,6 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
         NSLog(@"%@", [error localizedDescription]);
     }];
 
-    NSLog(@"starting request");
     [request startAsynchronous];
 }
 
