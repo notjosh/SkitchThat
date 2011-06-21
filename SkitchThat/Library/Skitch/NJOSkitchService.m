@@ -30,6 +30,8 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
 
 @implementation NJOSkitchService
 
+@synthesize delegate = _delegate;
+
 - (void)addImageAsPng:(UIImage *)image name:(NSString *)name {
     [self addImage:image type:kNJOSkitchServiceTypePng name:name];
 }
@@ -84,6 +86,15 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
     [request setPostValue:[NSNumber numberWithUnsignedInteger:size] forKey:@"objectSize"];
     [request setPostValue:data forKey:@"objectData"];
 
+    [request setShowAccurateProgress:YES];
+
+    [request setBytesSentBlock:^(unsigned long long size, unsigned long long total) {
+        if ([_delegate respondsToSelector:@selector(transferProgress:)]) {
+            float bytesSent = [request totalBytesSent];
+            [_delegate transferProgress:bytesSent / (float)total];
+        }
+    }];
+
     [request setCompletionBlock:^(void) {
         NSLog(@"complete!");
 
@@ -93,6 +104,10 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
 
         NJOSkitchResponse *response = [[NJOSkitchResponse alloc] initWithXmlString:responseString];
         NSLog(@"%@", response);
+
+        if ([_delegate respondsToSelector:@selector(transferComplete)]) {
+            [_delegate transferComplete];
+        }
     }];
 
     [request setFailedBlock:^(void) {
@@ -103,7 +118,7 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
     }];
 
     NSLog(@"starting request");
-    [request startSynchronous];
+    [request startAsynchronous];
 }
 
 - (NSURL *)urlForPath:(NSString *)path {

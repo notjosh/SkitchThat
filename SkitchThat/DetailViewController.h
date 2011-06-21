@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MBProgressHUD.h"
+#import "NJOSkitchServiceDelegate.h"
 
-@interface DetailViewController : UIViewController {
+
+@interface DetailViewController : UIViewController <NJOSkitchServiceDelegate> {
     NSString *_filePath;
     UIImageView *_imageView;
+    
+    MBProgressHUD *_hud;
 }
 
 @property (retain, nonatomic) NSString *filePath;

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		425FD0D913B147D300D51E52 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 425FD0D813B147D300D51E52 /* MBProgressHUD.m */; };
 		94BBF89F13B0B4110066D1E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BBF89E13B0B4110066D1E3 /* UIKit.framework */; };
 		94BBF8A113B0B4110066D1E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BBF8A013B0B4110066D1E3 /* Foundation.framework */; };
 		94BBF8A313B0B4110066D1E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BBF8A213B0B4110066D1E3 /* CoreGraphics.framework */; };
@@ -49,6 +50,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		425FD0D613B1428600D51E52 /* NJOSkitchServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NJOSkitchServiceDelegate.h; path = Library/Skitch/NJOSkitchServiceDelegate.h; sourceTree = "<group>"; };
+		425FD0D713B147D300D51E52 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Externals/MBProgressHUD/MBProgressHUD.h; sourceTree = SOURCE_ROOT; };
+		425FD0D813B147D300D51E52 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Externals/MBProgressHUD/MBProgressHUD.m; sourceTree = SOURCE_ROOT; };
 		94BBF89A13B0B4110066D1E3 /* SkitchThat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkitchThat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94BBF89E13B0B4110066D1E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		94BBF8A013B0B4110066D1E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -136,6 +140,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		425FD0D113B13C5E00D51E52 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				425FD0D713B147D300D51E52 /* MBProgressHUD.h */,
+				425FD0D813B147D300D51E52 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		94BBF88F13B0B4110066D1E3 = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				94BBF8D213B0B9950066D1E3 /* ASIHTTPRequest */,
+				425FD0D113B13C5E00D51E52 /* MBProgressHUD */,
 				94F86E3A13B0E71100202524 /* SFHFKeychainUtils */,
 				94BBF93113B0D0F60066D1E3 /* XML-to-NSDictionary */,
 			);
@@ -306,6 +320,7 @@
 				94BBF92713B0C6AA0066D1E3 /* NJOSkitchResponse.m */,
 				94F86E3713B0E4B500202524 /* NJOSkitchConfig.h */,
 				94F86E3813B0E4B500202524 /* NJOSkitchConfig.m */,
+				425FD0D613B1428600D51E52 /* NJOSkitchServiceDelegate.h */,
 			);
 			name = Skitch;
 			sourceTree = "<group>";
@@ -425,6 +440,7 @@
 				94F86E3913B0E4B500202524 /* NJOSkitchConfig.m in Sources */,
 				94F86E3D13B0E72900202524 /* SFHFKeychainUtils.m in Sources */,
 				94F86E4313B0FA2F00202524 /* NSString+MD5.m in Sources */,
+				425FD0D913B147D300D51E52 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

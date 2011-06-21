@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "NJOSkitchServiceDelegate.h";
+
 
 extern NSString * const kNJOSkitchServiceTypeJpeg;
 extern NSString * const kNJOSkitchServiceTypePng;
@@ -16,8 +18,10 @@ extern CGFloat const kNJOSkitchServiceJpegCompressionQuality;
 
 
 @interface NJOSkitchService : NSObject {
-    
+//    id<NJOSkitchServiceDelegate> _delegate;
 }
+
+@property (assign, nonatomic) id<NJOSkitchServiceDelegate> delegate;
 
 - (void)addImageAsPng:(UIImage *)image name:(NSString *)name;
 - (void)addImageAsJpeg:(UIImage *)image name:(NSString *)name;

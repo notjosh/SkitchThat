@@ -9,9 +9,14 @@
 #import "DetailViewController.h"
 
 #import "NJOSkitchService.h"
+#import "NJOSkitchServiceDelegate.h"
+
+#import "MBProgressHUD.h"
+
 
 @interface DetailViewController (Private)
 - (void)configureView;
+- (void)setHudProgress:(float)progress;
 @end
 
 @implementation DetailViewController
@@ -19,16 +24,20 @@
 @synthesize filePath = _filePath;
 @synthesize imageView = _imageView;
 
+- (void)dealloc {
+    [_filePath release], _filePath = nil;
+    [_imageView release], _imageView = nil;
+    [_hud release], _hud = nil;
+    
+    [super dealloc];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
     return self;
-}
-
-- (void)dealloc {
-    [super dealloc];
 }
 
 - (void)configureView {
@@ -58,6 +67,15 @@
     [self configureView];
 
     self.title = [_filePath lastPathComponent];
+
+    _hud = [[MBProgressHUD alloc] initWithView:self.view];
+    _hud.mode = MBProgressHUDModeDeterminate;
+    _hud.labelText = @"Uploading...";
+    [self.view addSubview:_hud];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 }
 
 - (void)viewDidUnload {
@@ -75,20 +93,40 @@
 - (void)handleUploadAsPngTapped:(id)sender {
     NSLog(@"handleUploadAsPngTapped");
 
-    NJOSkitchService *s = [[NJOSkitchService alloc] init];
-    [s addImageAsPng:_imageView.image name:[_filePath lastPathComponent]];
+    [self setHudProgress:0.0f];
+    [_hud show:YES];
 
+    NJOSkitchService *s = [[NJOSkitchService alloc] init];
+    s.delegate = self;
+    [s addImageAsPng:_imageView.image name:[_filePath lastPathComponent]];
     [s release];
 }
 
 - (void)handleUploadAsJpegTapped:(id)sender {
     NSLog(@"handleUploadAsJpegTapped");
 
+    [self setHudProgress:0.0f];
+    [_hud show:YES];
+
     NJOSkitchService *s = [[NJOSkitchService alloc] init];
+    s.delegate = self;
     [s addImageAsJpeg:_imageView.image name:[_filePath lastPathComponent]];
-    
-    [s release];    
+    [s release];
 }
 
+- (void)setHudProgress:(float)progress {
+    [_hud setProgress:progress];
+    [_hud setDetailsLabelText:[NSString stringWithFormat:@"%0.0f%%", progress * 100]];
+}
+
+- (void)transferProgress:(float)progress {
+    NSLog(@"-> %0.2f", progress);
+    [self setHudProgress:progress];
+}
+
+- (void)transferComplete {
+    NSLog(@"-> transferComplete");
+    [_hud hide:YES];
+}
 
 @end
