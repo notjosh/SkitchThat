@@ -12,6 +12,8 @@
 
 #import "NJOSkitchConfig.h"
 
+#import "MBProgressHUD.h"
+
 @interface RootViewController (Private)
 - (NSArray *)recursivePathsForResourcesOfType:(NSString *)type inDirectory:(NSString *)directoryPath;
 - (NSString *)pathForIndexPath:(NSIndexPath *)indexPath;
@@ -21,6 +23,8 @@
 @implementation RootViewController
 
 - (void)dealloc {
+    [_files release], _files = nil;
+
     [super dealloc];
 }
 
