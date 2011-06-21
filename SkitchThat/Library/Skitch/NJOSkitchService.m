@@ -22,7 +22,7 @@ NSString * const kNJOSkitchServiceTypePng  = @"image/png";
 CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
 
 @interface NJOSkitchService (SkitchRawAPI)
-- (void)addObject:(NSData *)objectData type:(NSString *)type name:(NSString *)name objectSize:(NSUInteger)size;
+- (void)addObject:(NSString *)objectData type:(NSString *)type name:(NSString *)name objectSize:(NSUInteger)size;
 
 - (NSURL *)urlForPath:(NSString *)path;
 - (NSURL *)urlForPath:(NSString *)path parameters:(NSDictionary *)parameters;
@@ -55,32 +55,41 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
     NSString *errorMessage = [NSString stringWithFormat:@"objectData can not be represented as type: %@", type];
     NSAssert(nil != objectData, errorMessage);
 
-    [self addObject:objectData
+    NSString *objectString = [ASIHTTPRequest base64forData:objectData];
+
+    [self addObject:objectString
                type:type
                name:name
-         objectSize:[objectData length]];
+         objectSize:[objectString length]];
 }
 
 @end
 
 @implementation NJOSkitchService (SkitchRawAPI)
 
-- (void)addObject:(NSData *)objectData type:(NSString *)type name:(NSString *)name objectSize:(NSUInteger)size {
+- (void)addObject:(NSString *)data type:(NSString *)type name:(NSString *)name objectSize:(NSUInteger)size {
     NSString *username = [[NJOSkitchConfig sharedNJOSkitchConfig] username];
     NSString *password = [[NJOSkitchConfig sharedNJOSkitchConfig] password];
 
     NSURL *url = [self urlForPath:@"/services/addObject/"
-                       parameters:[NSDictionary dictionaryWithObjectsAndKeys:username, @"username",
+                       parameters:[NSDictionary dictionaryWithObjectsAndKeys:username,       @"username",
                                                                              [password MD5], @"password",
                                    nil]];
-
+    
     NSLog(@"%@", url);
+    NSLog(@"%@", type);
+    NSLog(@"%@", name);
+    NSLog(@"%@", [NSNumber numberWithUnsignedInteger:size]);
+//    NSLog(@"%@", data);
+    
 
     __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setPostFormat:ASIURLEncodedPostFormat];
+    [request setValidatesSecureCertificate:NO];
     [request setPostValue:type forKey:@"objectType"];
     [request setPostValue:name forKey:@"objectName"];
     [request setPostValue:[NSNumber numberWithUnsignedInteger:size] forKey:@"objectSize"];
-    [request setData:objectData withFileName:name andContentType:type forKey:@"objectData"];
+    [request setPostValue:data forKey:@"objectData"];
 
     [request setCompletionBlock:^(void) {
         NSLog(@"complete!");
