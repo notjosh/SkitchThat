@@ -15,6 +15,7 @@
 @interface RootViewController (Private)
 - (NSArray *)recursivePathsForResourcesOfType:(NSString *)type inDirectory:(NSString *)directoryPath;
 - (NSString *)pathForIndexPath:(NSIndexPath *)indexPath;
+- (NSString *)tidyFileSizeForItemAtPath:(NSString *)path;
 @end
 
 @implementation RootViewController
@@ -91,11 +92,12 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
 
     NSString *path = [self pathForIndexPath:indexPath];
     cell.textLabel.text = [path lastPathComponent];
+    cell.detailTextLabel.text = [self tidyFileSizeForItemAtPath:path];;
     
     return cell;
 }
@@ -185,6 +187,31 @@
     [enumerator release];
     
     return [filePaths autorelease];
+}
+
+- (NSString *)tidyFileSizeForItemAtPath:(NSString *)path {
+    NSError *error = nil;
+    NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:&error];
+
+    unsigned long long size = [attributes fileSize];
+    float displaySize = size;
+    int i = 0;
+
+    NSArray *labels = [NSArray arrayWithObjects:@"b", @"kb", @"mb", nil];
+
+    for (i = 0; i < [labels count]; i++) {
+        if (displaySize < 1024) {
+            break;
+        }
+
+        if ([labels count] - 1 == i) {
+            break;
+        }
+
+        displaySize /= 1024;
+    }
+
+    return [NSString stringWithFormat:@"%0.1f%@", displaySize, [labels objectAtIndex:i]];
 }
 
 @end
