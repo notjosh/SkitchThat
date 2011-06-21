@@ -11,6 +11,8 @@
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
 
+#import "NJOSkitchResponse.h"
+
 NSString * const kNJOSkitchServiceTypeJpeg = @"image/jpeg";
 NSString * const kNJOSkitchServiceTypePng  = @"image/png";
 
@@ -74,6 +76,9 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
         // Use when fetching text data
         NSString *responseString = [request responseString];
         NSLog(@"%@", responseString);
+
+        NJOSkitchResponse *response = [[NJOSkitchResponse alloc] initWithXmlString:responseString];
+        NSLog(@"%@", response);
     }];
 
     [request setFailedBlock:^(void) {

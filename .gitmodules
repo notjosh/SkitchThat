@@ -1,3 +1,6 @@
 [submodule "Externals/ASIHTTPRequest"]
 	path = Externals/ASIHTTPRequest
 	url = https://github.com/pokeb/asi-http-request.git
+[submodule "Externals/XML-to-NSDictioary"]
+	path = Externals/XML-to-NSDictioary
+	url = https://github.com/Insert-Witty-Name/XML-to-NSDictionary.git

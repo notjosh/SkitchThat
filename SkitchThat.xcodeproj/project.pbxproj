@@ -38,6 +38,8 @@
 		94BBF91F13B0BB090066D1E3 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF91513B0BB090066D1E3 /* ASIInputStream.m */; };
 		94BBF92013B0BB090066D1E3 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF91713B0BB090066D1E3 /* ASINetworkQueue.m */; };
 		94BBF92513B0BD430066D1E3 /* NJOSkitchService.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF92413B0BD430066D1E3 /* NJOSkitchService.m */; };
+		94BBF92813B0C6AA0066D1E3 /* NJOSkitchResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF92713B0C6AA0066D1E3 /* NJOSkitchResponse.m */; };
+		94BBF93413B0D11A0066D1E3 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BBF93313B0D11A0066D1E3 /* XMLReader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +95,10 @@
 		94BBF91813B0BB090066D1E3 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIProgressDelegate.h; path = Externals/ASIHTTPRequest/Classes/ASIProgressDelegate.h; sourceTree = SOURCE_ROOT; };
 		94BBF92313B0BD430066D1E3 /* NJOSkitchService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NJOSkitchService.h; path = Library/Skitch/NJOSkitchService.h; sourceTree = "<group>"; };
 		94BBF92413B0BD430066D1E3 /* NJOSkitchService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NJOSkitchService.m; path = Library/Skitch/NJOSkitchService.m; sourceTree = "<group>"; };
+		94BBF92613B0C6AA0066D1E3 /* NJOSkitchResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NJOSkitchResponse.h; path = Library/Skitch/NJOSkitchResponse.h; sourceTree = "<group>"; };
+		94BBF92713B0C6AA0066D1E3 /* NJOSkitchResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NJOSkitchResponse.m; path = Library/Skitch/NJOSkitchResponse.m; sourceTree = "<group>"; };
+		94BBF93213B0D11A0066D1E3 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReader.h; path = "Externals/XML-to-NSDictioary/XMLReader.h"; sourceTree = SOURCE_ROOT; };
+		94BBF93313B0D11A0066D1E3 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReader.m; path = "Externals/XML-to-NSDictioary/XMLReader.m"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				94BBF8D213B0B9950066D1E3 /* ASIHTTPRequest */,
+				94BBF93113B0D0F60066D1E3 /* XML-to-NSDictionary */,
 			);
 			name = Externals;
 			sourceTree = "<group>";
@@ -272,8 +279,19 @@
 			children = (
 				94BBF92313B0BD430066D1E3 /* NJOSkitchService.h */,
 				94BBF92413B0BD430066D1E3 /* NJOSkitchService.m */,
+				94BBF92613B0C6AA0066D1E3 /* NJOSkitchResponse.h */,
+				94BBF92713B0C6AA0066D1E3 /* NJOSkitchResponse.m */,
 			);
 			name = Skitch;
+			sourceTree = "<group>";
+		};
+		94BBF93113B0D0F60066D1E3 /* XML-to-NSDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				94BBF93213B0D11A0066D1E3 /* XMLReader.h */,
+				94BBF93313B0D11A0066D1E3 /* XMLReader.m */,
+			);
+			name = "XML-to-NSDictionary";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,6 +375,8 @@
 				94BBF91F13B0BB090066D1E3 /* ASIInputStream.m in Sources */,
 				94BBF92013B0BB090066D1E3 /* ASINetworkQueue.m in Sources */,
 				94BBF92513B0BD430066D1E3 /* NJOSkitchService.m in Sources */,
+				94BBF92813B0C6AA0066D1E3 /* NJOSkitchResponse.m in Sources */,
+				94BBF93413B0D11A0066D1E3 /* XMLReader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
