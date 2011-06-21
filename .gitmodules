@@ -4,3 +4,6 @@
 [submodule "Externals/XML-to-NSDictioary"]
 	path = Externals/XML-to-NSDictioary
 	url = https://github.com/Insert-Witty-Name/XML-to-NSDictionary.git
+[submodule "Externals/scifihifi-iphone"]
+	path = Externals/scifihifi-iphone
+	url = https://github.com/ldandersen/scifihifi-iphone.git
