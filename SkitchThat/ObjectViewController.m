@@ -13,6 +13,8 @@
 
 #import "MBProgressHUD.h"
 
+#import "MWPhotoBrowser.h"
+
 #define THUMBNAIL_HEIGHT 100.0f
 
 enum {
@@ -58,6 +60,7 @@ enum {
     [_objectThumbnailUrl release], _objectThumbnailUrl = nil;
     [_objectTitle release], _objectTitle = nil;
     [_objectDescription release], _objectDescription = nil;
+    [_skitchResponse release], _skitchResponse = nil;
 
     [super dealloc];
 }
@@ -135,6 +138,8 @@ enum {
     _objectDescription  = [[skitchResponse objectForKey:@"description"] retain];
     _objectWidth        = [[skitchResponse objectForKey:@"objectwidth"] intValue];
     _objectHeight       = [[skitchResponse objectForKey:@"objectheight"] intValue];
+
+    _skitchResponse = [skitchResponse retain];
 
     [_tableView reloadData];
     _tableView.hidden = NO;
@@ -236,15 +241,6 @@ enum {
     return cell;
 }
 
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    switch (indexPath.section) {
-        case kObjectViewControllerTableSectionDetails:
-            return nil;
-    }
-
-    return indexPath;
-}
-
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
@@ -256,6 +252,33 @@ enum {
     }
 
     return [tableView rowHeight];
+}
+
+//- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    switch (indexPath.section) {
+//        case kObjectViewControllerTableSectionDetails:
+//            return nil;
+//    }
+//    
+//    return indexPath;
+//}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.section) {
+        case kObjectViewControllerTableSectionDetails:
+            switch (indexPath.row) {
+                case kObjectViewControllerTableSectionDetailsRowThumbnail:
+                {
+                    NSString *url = [_skitchResponse objectForKey:@"stream"];
+                    MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:url]];
+                    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithPhotos:[NSArray arrayWithObject:photo]];
+                    [self.navigationController pushViewController:browser animated:YES];
+                    [browser release];
+
+                    break;
+                }
+            }
+    }
 }
 
 @end

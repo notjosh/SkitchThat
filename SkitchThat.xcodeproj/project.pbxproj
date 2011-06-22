@@ -10,6 +10,18 @@
 		425FD0D913B147D300D51E52 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 425FD0D813B147D300D51E52 /* MBProgressHUD.m */; };
 		425FD0DD13B1551B00D51E52 /* ObjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 425FD0DB13B1551A00D51E52 /* ObjectViewController.m */; };
 		425FD0DE13B1551B00D51E52 /* ObjectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 425FD0DC13B1551A00D51E52 /* ObjectViewController.xib */; };
+		42C9A4BB13B2649D008E2B7D /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C9A4AC13B2649D008E2B7D /* Menu.m */; };
+		42C9A4BC13B2649D008E2B7D /* MWPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C9A4AE13B2649D008E2B7D /* MWPhoto.m */; };
+		42C9A4BD13B2649D008E2B7D /* MWPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C9A4B013B2649D008E2B7D /* MWPhotoBrowser.m */; };
+		42C9A4BE13B2649D008E2B7D /* MWPhotoBrowserAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C9A4B213B2649D008E2B7D /* MWPhotoBrowserAppDelegate.m */; };
+		42C9A4BF13B2649D008E2B7D /* UIImage+Decompress.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C9A4B413B2649D008E2B7D /* UIImage+Decompress.m */; };
+		42C9A4C013B2649D008E2B7D /* UIImageViewTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C9A4B613B2649D008E2B7D /* UIImageViewTap.m */; };
+		42C9A4C113B2649D008E2B7D /* UIViewTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C9A4B813B2649D008E2B7D /* UIViewTap.m */; };
+		42C9A4C213B2649D008E2B7D /* ZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C9A4BA13B2649D008E2B7D /* ZoomingScrollView.m */; };
+		42C9A4C813B264BF008E2B7D /* UIBarButtonItemArrowLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C9A4C413B264BF008E2B7D /* UIBarButtonItemArrowLeft.png */; };
+		42C9A4C913B264BF008E2B7D /* UIBarButtonItemArrowLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C9A4C513B264BF008E2B7D /* UIBarButtonItemArrowLeft@2x.png */; };
+		42C9A4CA13B264BF008E2B7D /* UIBarButtonItemArrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C9A4C613B264BF008E2B7D /* UIBarButtonItemArrowRight.png */; };
+		42C9A4CB13B264BF008E2B7D /* UIBarButtonItemArrowRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C9A4C713B264BF008E2B7D /* UIBarButtonItemArrowRight@2x.png */; };
 		94AE397413B1F83200E27F98 /* NJOSkitchXmlResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 94AE397313B1F83200E27F98 /* NJOSkitchXmlResponse.m */; };
 		94AE397813B1F96D00E27F98 /* NJOSkitchJsonResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 94AE397713B1F96D00E27F98 /* NJOSkitchJsonResponse.m */; };
 		94AE399213B1FAF100E27F98 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 94AE397B13B1FAF100E27F98 /* CDataScanner.m */; };
@@ -70,6 +82,26 @@
 		425FD0DA13B1551900D51E52 /* ObjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectViewController.h; sourceTree = "<group>"; };
 		425FD0DB13B1551A00D51E52 /* ObjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectViewController.m; sourceTree = "<group>"; };
 		425FD0DC13B1551A00D51E52 /* ObjectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ObjectViewController.xib; sourceTree = "<group>"; };
+		42C9A4AB13B2649D008E2B7D /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Menu.h; path = Externals/MWPhotoBrowser/Classes/Menu.h; sourceTree = SOURCE_ROOT; };
+		42C9A4AC13B2649D008E2B7D /* Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Menu.m; path = Externals/MWPhotoBrowser/Classes/Menu.m; sourceTree = SOURCE_ROOT; };
+		42C9A4AD13B2649D008E2B7D /* MWPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MWPhoto.h; path = Externals/MWPhotoBrowser/Classes/MWPhoto.h; sourceTree = SOURCE_ROOT; };
+		42C9A4AE13B2649D008E2B7D /* MWPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MWPhoto.m; path = Externals/MWPhotoBrowser/Classes/MWPhoto.m; sourceTree = SOURCE_ROOT; };
+		42C9A4AF13B2649D008E2B7D /* MWPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MWPhotoBrowser.h; path = Externals/MWPhotoBrowser/Classes/MWPhotoBrowser.h; sourceTree = SOURCE_ROOT; };
+		42C9A4B013B2649D008E2B7D /* MWPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MWPhotoBrowser.m; path = Externals/MWPhotoBrowser/Classes/MWPhotoBrowser.m; sourceTree = SOURCE_ROOT; };
+		42C9A4B113B2649D008E2B7D /* MWPhotoBrowserAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MWPhotoBrowserAppDelegate.h; path = Externals/MWPhotoBrowser/Classes/MWPhotoBrowserAppDelegate.h; sourceTree = SOURCE_ROOT; };
+		42C9A4B213B2649D008E2B7D /* MWPhotoBrowserAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MWPhotoBrowserAppDelegate.m; path = Externals/MWPhotoBrowser/Classes/MWPhotoBrowserAppDelegate.m; sourceTree = SOURCE_ROOT; };
+		42C9A4B313B2649D008E2B7D /* UIImage+Decompress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Decompress.h"; path = "Externals/MWPhotoBrowser/Classes/UIImage+Decompress.h"; sourceTree = SOURCE_ROOT; };
+		42C9A4B413B2649D008E2B7D /* UIImage+Decompress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Decompress.m"; path = "Externals/MWPhotoBrowser/Classes/UIImage+Decompress.m"; sourceTree = SOURCE_ROOT; };
+		42C9A4B513B2649D008E2B7D /* UIImageViewTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIImageViewTap.h; path = Externals/MWPhotoBrowser/Classes/UIImageViewTap.h; sourceTree = SOURCE_ROOT; };
+		42C9A4B613B2649D008E2B7D /* UIImageViewTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIImageViewTap.m; path = Externals/MWPhotoBrowser/Classes/UIImageViewTap.m; sourceTree = SOURCE_ROOT; };
+		42C9A4B713B2649D008E2B7D /* UIViewTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIViewTap.h; path = Externals/MWPhotoBrowser/Classes/UIViewTap.h; sourceTree = SOURCE_ROOT; };
+		42C9A4B813B2649D008E2B7D /* UIViewTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViewTap.m; path = Externals/MWPhotoBrowser/Classes/UIViewTap.m; sourceTree = SOURCE_ROOT; };
+		42C9A4B913B2649D008E2B7D /* ZoomingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZoomingScrollView.h; path = Externals/MWPhotoBrowser/Classes/ZoomingScrollView.h; sourceTree = SOURCE_ROOT; };
+		42C9A4BA13B2649D008E2B7D /* ZoomingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZoomingScrollView.m; path = Externals/MWPhotoBrowser/Classes/ZoomingScrollView.m; sourceTree = SOURCE_ROOT; };
+		42C9A4C413B264BF008E2B7D /* UIBarButtonItemArrowLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UIBarButtonItemArrowLeft.png; path = Externals/MWPhotoBrowser/UIBarButtonItemArrowLeft.png; sourceTree = SOURCE_ROOT; };
+		42C9A4C513B264BF008E2B7D /* UIBarButtonItemArrowLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UIBarButtonItemArrowLeft@2x.png"; path = "Externals/MWPhotoBrowser/UIBarButtonItemArrowLeft@2x.png"; sourceTree = SOURCE_ROOT; };
+		42C9A4C613B264BF008E2B7D /* UIBarButtonItemArrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UIBarButtonItemArrowRight.png; path = Externals/MWPhotoBrowser/UIBarButtonItemArrowRight.png; sourceTree = SOURCE_ROOT; };
+		42C9A4C713B264BF008E2B7D /* UIBarButtonItemArrowRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UIBarButtonItemArrowRight@2x.png"; path = "Externals/MWPhotoBrowser/UIBarButtonItemArrowRight@2x.png"; sourceTree = SOURCE_ROOT; };
 		94AE397213B1F83200E27F98 /* NJOSkitchXmlResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; name = NJOSkitchXmlResponse.h; path = Library/Skitch/NJOSkitchXmlResponse.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 		94AE397313B1F83200E27F98 /* NJOSkitchXmlResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; name = NJOSkitchXmlResponse.m; path = Library/Skitch/NJOSkitchXmlResponse.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 		94AE397613B1F96D00E27F98 /* NJOSkitchJsonResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NJOSkitchJsonResponse.h; path = Library/Skitch/NJOSkitchJsonResponse.h; sourceTree = "<group>"; };
@@ -189,6 +221,41 @@
 				425FD0D813B147D300D51E52 /* MBProgressHUD.m */,
 			);
 			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		42C9A4A913B2646B008E2B7D /* MWPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				42C9A4C313B264A3008E2B7D /* Classes */,
+				42C9A4C413B264BF008E2B7D /* UIBarButtonItemArrowLeft.png */,
+				42C9A4C513B264BF008E2B7D /* UIBarButtonItemArrowLeft@2x.png */,
+				42C9A4C613B264BF008E2B7D /* UIBarButtonItemArrowRight.png */,
+				42C9A4C713B264BF008E2B7D /* UIBarButtonItemArrowRight@2x.png */,
+			);
+			name = MWPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		42C9A4C313B264A3008E2B7D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				42C9A4AB13B2649D008E2B7D /* Menu.h */,
+				42C9A4AC13B2649D008E2B7D /* Menu.m */,
+				42C9A4AD13B2649D008E2B7D /* MWPhoto.h */,
+				42C9A4AE13B2649D008E2B7D /* MWPhoto.m */,
+				42C9A4AF13B2649D008E2B7D /* MWPhotoBrowser.h */,
+				42C9A4B013B2649D008E2B7D /* MWPhotoBrowser.m */,
+				42C9A4B113B2649D008E2B7D /* MWPhotoBrowserAppDelegate.h */,
+				42C9A4B213B2649D008E2B7D /* MWPhotoBrowserAppDelegate.m */,
+				42C9A4B313B2649D008E2B7D /* UIImage+Decompress.h */,
+				42C9A4B413B2649D008E2B7D /* UIImage+Decompress.m */,
+				42C9A4B513B2649D008E2B7D /* UIImageViewTap.h */,
+				42C9A4B613B2649D008E2B7D /* UIImageViewTap.m */,
+				42C9A4B713B2649D008E2B7D /* UIViewTap.h */,
+				42C9A4B813B2649D008E2B7D /* UIViewTap.m */,
+				42C9A4B913B2649D008E2B7D /* ZoomingScrollView.h */,
+				42C9A4BA13B2649D008E2B7D /* ZoomingScrollView.m */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 		94AE397913B1FA9800E27F98 /* TouchJSON */ = {
@@ -343,6 +410,7 @@
 			children = (
 				94BBF8D213B0B9950066D1E3 /* ASIHTTPRequest */,
 				425FD0D113B13C5E00D51E52 /* MBProgressHUD */,
+				42C9A4A913B2646B008E2B7D /* MWPhotoBrowser */,
 				94F86E3A13B0E71100202524 /* SFHFKeychainUtils */,
 				94AE397913B1FA9800E27F98 /* TouchJSON */,
 				94BBF93113B0D0F60066D1E3 /* XML-to-NSDictionary */,
@@ -516,6 +584,10 @@
 				94BBF8D013B0B6720066D1E3 /* DetailViewController.xib in Resources */,
 				94F86E3513B0E20A00202524 /* CredentialsViewController.xib in Resources */,
 				425FD0DE13B1551B00D51E52 /* ObjectViewController.xib in Resources */,
+				42C9A4C813B264BF008E2B7D /* UIBarButtonItemArrowLeft.png in Resources */,
+				42C9A4C913B264BF008E2B7D /* UIBarButtonItemArrowLeft@2x.png in Resources */,
+				42C9A4CA13B264BF008E2B7D /* UIBarButtonItemArrowRight.png in Resources */,
+				42C9A4CB13B264BF008E2B7D /* UIBarButtonItemArrowRight@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,6 +632,14 @@
 				94AE399913B1FAF100E27F98 /* CJSONDeserializer.m in Sources */,
 				94AE399A13B1FAF100E27F98 /* CJSONScanner.m in Sources */,
 				94AE399B13B1FAF100E27F98 /* CJSONSerializer.m in Sources */,
+				42C9A4BB13B2649D008E2B7D /* Menu.m in Sources */,
+				42C9A4BC13B2649D008E2B7D /* MWPhoto.m in Sources */,
+				42C9A4BD13B2649D008E2B7D /* MWPhotoBrowser.m in Sources */,
+				42C9A4BE13B2649D008E2B7D /* MWPhotoBrowserAppDelegate.m in Sources */,
+				42C9A4BF13B2649D008E2B7D /* UIImage+Decompress.m in Sources */,
+				42C9A4C013B2649D008E2B7D /* UIImageViewTap.m in Sources */,
+				42C9A4C113B2649D008E2B7D /* UIViewTap.m in Sources */,
+				42C9A4C213B2649D008E2B7D /* ZoomingScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

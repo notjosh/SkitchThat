@@ -20,6 +20,8 @@
     NSString *_objectDescription;
     NSUInteger _objectWidth;
     NSUInteger _objectHeight;
+
+    NSDictionary *_skitchResponse;
 }
 
 @property (retain, nonatomic) NSString *guid;
