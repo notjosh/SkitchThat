@@ -19,6 +19,9 @@ enum {
     kObjectViewControllerTableSectionDetails,
     kObjectViewControllerTableSectionComments,
     kObjectViewControllerTableSectionLinks,
+    kObjectViewControllerTableSectionPrivacy,
+    kObjectViewControllerTableSectionTags,
+    kObjectViewControllerTableSectionSets,
     kObjectViewControllerTableNumSections
 };
 
@@ -150,6 +153,12 @@ enum {
             return kObjectViewControllerTableSectionCommentsNumRows;
         case kObjectViewControllerTableSectionLinks:
             return kObjectViewControllerTableSectionLinksNumRows;
+        case kObjectViewControllerTableSectionPrivacy:
+            return 1;
+        case kObjectViewControllerTableSectionTags:
+            return 1;
+        case kObjectViewControllerTableSectionSets:
+            return 1;
     }
 
     return 0;
@@ -163,6 +172,12 @@ enum {
             return @"Comments";
         case kObjectViewControllerTableSectionLinks:
             return @"Links";
+        case kObjectViewControllerTableSectionPrivacy:
+            return @"Privacy";
+        case kObjectViewControllerTableSectionTags:
+            return @"Tags";
+        case kObjectViewControllerTableSectionSets:
+            return @"Sets";
     }
 
     return nil;
@@ -211,9 +226,23 @@ enum {
             cell.textLabel.text = @"Links";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
+
+        default:
+            cell.textLabel.text = [NSString stringWithFormat:@"%d,%d", indexPath.section, indexPath.row];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            break;
     }
 
     return cell;
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.section) {
+        case kObjectViewControllerTableSectionDetails:
+            return nil;
+    }
+
+    return indexPath;
 }
 
 #pragma mark - UITableViewDelegate
