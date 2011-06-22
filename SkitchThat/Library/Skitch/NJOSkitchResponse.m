@@ -27,7 +27,7 @@
 
 #pragma mark - API response helpers
 - (BOOL)hasError {
-    return 0 != _result;
+    return _result < 0;
 }
 
 @end
