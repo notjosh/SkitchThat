@@ -10,10 +10,21 @@
 
 #import "NJOSkitchServiceDelegate.h"
 
-@interface ObjectViewController : UIViewController <NJOSkitchServiceDelegate> {
-    
+@class MBProgressHUD;
+
+@interface ObjectViewController : UIViewController <NJOSkitchServiceDelegate, UITableViewDataSource, UITableViewDelegate> {
+    MBProgressHUD *_hud;
+
+    NSString *_objectThumbnailUrl;
+    NSString *_objectTitle;
+    NSString *_objectDescription;
+    NSUInteger _objectWidth;
+    NSUInteger _objectHeight;
 }
 
 @property (retain, nonatomic) NSString *guid;
+
+@property (retain, nonatomic) IBOutlet UITableView *tableView;
+@property (retain, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
