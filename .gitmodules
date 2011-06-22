@@ -13,3 +13,6 @@
 [submodule "Externals/TouchJSON"]
 	path = Externals/TouchJSON
 	url = https://github.com/TouchCode/TouchJSON.git
+[submodule "Externals/MWPhotoBrowser"]
+	path = Externals/MWPhotoBrowser
+	url = https://github.com/mwaterfall/MWPhotoBrowser.git
