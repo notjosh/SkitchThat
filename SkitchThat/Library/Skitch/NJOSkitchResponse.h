@@ -14,22 +14,13 @@
 
     NSInteger _result;
     NSString *_message;
-
-    NSDecimalNumber *_version;
-    NSString *_noun;
 }
-
-- (id)initWithXmlString:(NSString *)xml;
-
-- (BOOL)hasError;
-
 
 @property (readonly, nonatomic) NSDictionary *skitchResponse;
 
 @property (readonly, nonatomic) NSInteger result;
 @property (readonly, nonatomic) NSString *message;
 
-@property (readonly, nonatomic) NSDecimalNumber *version;
-@property (readonly, nonatomic) NSString *noun;
+- (BOOL)hasError;
 
 @end

@@ -117,7 +117,7 @@
 }
 
 - (void)handleMockGuidTapped:(id)sender {
-    NSLog(@"handleUploadAsJpegTapped");
+    NSLog(@"handleMockGuidTapped");
     
     ObjectViewController *objectViewController = [[ObjectViewController alloc] initWithNibName:@"ObjectViewController" bundle:nil];
     objectViewController.guid = @"48809c-46fd1b-4d6d92-ea709f-524ab7-a7";
@@ -130,11 +130,11 @@
     [_hud setDetailsLabelText:[NSString stringWithFormat:@"%0.0f%%", progress * 100]];
 }
 
-- (void)transferProgress:(float)progress {
+- (void)requestProgress:(float)progress {
     [self setHudProgress:progress];
 }
 
-- (void)transferComplete:(NJOSkitchResponse *)response {
+- (void)requestComplete:(NJOSkitchResponse *)response {
     NSLog(@"-> transferComplete");
     NSLog(@"%@", response);
     [_hud hide:YES];

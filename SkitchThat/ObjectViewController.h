@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#import "NJOSkitchServiceDelegate.h"
 
-@interface ObjectViewController : UIViewController {
+@interface ObjectViewController : UIViewController <NJOSkitchServiceDelegate> {
     
 }
 

@@ -14,7 +14,7 @@
 @protocol NJOSkitchServiceDelegate <NSObject>
 
 @optional
-- (void)transferProgress:(float)progress;
-- (void)transferComplete:(NJOSkitchResponse *)response;
+- (void)requestProgress:(float)progress;
+- (void)requestComplete:(NJOSkitchResponse *)response;
 
 @end

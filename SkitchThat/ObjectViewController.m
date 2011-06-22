@@ -40,6 +40,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     NJOSkitchService *s = [[NJOSkitchService alloc] init];
+    s.delegate = self;
     [s fetchObject:_guid];
     [s release];
 }
@@ -58,6 +59,11 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+#pragma mark - NJOSkitchServiceDelegate
+- (void)requestComplete:(NJOSkitchResponse *)response {
+    NSLog(@"-> %@", response);
 }
 
 @end

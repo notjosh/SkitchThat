@@ -14,7 +14,8 @@
 #import "ASIFormDataRequest.h"
 
 #import "NJOSkitchConfig.h"
-#import "NJOSkitchResponse.h"
+#import "NJOSkitchJsonResponse.h"
+#import "NJOSkitchXmlResponse.h"
 
 NSString * const kNJOSkitchServiceTypeJpeg = @"image/jpeg";
 NSString * const kNJOSkitchServiceTypePng  = @"image/png";
@@ -74,8 +75,13 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
         // Use when fetching text data
         NSString *responseString = [request responseString];
 
-        NSLog(@"Complete!");
-        NSLog(@"%@", responseString);
+        NJOSkitchJsonResponse *response = [[NJOSkitchJsonResponse alloc] initWithJsonString:responseString];
+
+        if ([_delegate respondsToSelector:@selector(requestComplete:)]) {
+            [_delegate requestComplete:response];
+        }
+        
+        [response release];
     }];
     
     [request setFailedBlock:^(void) {
@@ -112,9 +118,9 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
     [request setShowAccurateProgress:YES];
 
     [request setBytesSentBlock:^(unsigned long long size, unsigned long long total) {
-        if ([_delegate respondsToSelector:@selector(transferProgress:)]) {
+        if ([_delegate respondsToSelector:@selector(requestProgress:)]) {
             float bytesSent = [request totalBytesSent];
-            [_delegate transferProgress:bytesSent / (float)total];
+            [_delegate requestProgress:bytesSent / (float)total];
         }
     }];
 
@@ -122,10 +128,10 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
         // Use when fetching text data
         NSString *responseString = [request responseString];
 
-        NJOSkitchResponse *response = [[NJOSkitchResponse alloc] initWithXmlString:responseString];
+        NJOSkitchXmlResponse *response = [[NJOSkitchXmlResponse alloc] initWithXmlString:responseString];
 
-        if ([_delegate respondsToSelector:@selector(transferComplete:)]) {
-            [_delegate transferComplete:response];
+        if ([_delegate respondsToSelector:@selector(requestComplete:)]) {
+            [_delegate requestComplete:response];
         }
 
         [response release];
