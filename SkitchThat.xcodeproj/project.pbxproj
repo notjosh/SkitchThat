@@ -76,6 +76,7 @@
 		94CB89BE13B349B60046C335 /* UIImage+Saving.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CB89B313B349B60046C335 /* UIImage+Saving.m */; };
 		94CB89BF13B349B60046C335 /* NYXImagesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CB89B613B349B60046C335 /* NYXImagesHelper.m */; };
 		94CB89C113B34DA80046C335 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94CB89C013B34DA80046C335 /* ImageIO.framework */; };
+		94CB89C413B381620046C335 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CB89C313B381620046C335 /* GTMNSString+HTML.m */; };
 		94F86E3413B0E20A00202524 /* CredentialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F86E3213B0E20A00202524 /* CredentialsViewController.m */; };
 		94F86E3513B0E20A00202524 /* CredentialsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94F86E3313B0E20A00202524 /* CredentialsViewController.xib */; };
 		94F86E3913B0E4B500202524 /* NJOSkitchConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F86E3813B0E4B500202524 /* NJOSkitchConfig.m */; };
@@ -210,6 +211,9 @@
 		94CB89B613B349B60046C335 /* NYXImagesHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYXImagesHelper.m; sourceTree = "<group>"; };
 		94CB89B713B349B60046C335 /* NYXImagesUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYXImagesUtilities.h; sourceTree = "<group>"; };
 		94CB89C013B34DA80046C335 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		94CB89C213B381620046C335 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GTMNSString+HTML.h"; path = "Utilities/GTMNSString+HTML.h"; sourceTree = "<group>"; };
+		94CB89C313B381620046C335 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GTMNSString+HTML.m"; path = "Utilities/GTMNSString+HTML.m"; sourceTree = "<group>"; };
+		94CB89C513B3833A0046C335 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMDefines.h; path = Utilities/GTMDefines.h; sourceTree = "<group>"; };
 		94F86E3113B0E20A00202524 /* CredentialsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CredentialsViewController.h; sourceTree = "<group>"; };
 		94F86E3213B0E20A00202524 /* CredentialsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CredentialsViewController.m; sourceTree = "<group>"; };
 		94F86E3313B0E20A00202524 /* CredentialsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CredentialsViewController.xib; sourceTree = "<group>"; };
@@ -593,6 +597,9 @@
 			children = (
 				94F86E4113B0FA2F00202524 /* NSString+MD5.h */,
 				94F86E4213B0FA2F00202524 /* NSString+MD5.m */,
+				94CB89C513B3833A0046C335 /* GTMDefines.h */,
+				94CB89C213B381620046C335 /* GTMNSString+HTML.h */,
+				94CB89C313B381620046C335 /* GTMNSString+HTML.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -720,6 +727,7 @@
 				94CB89BD13B349B60046C335 /* UIImage+Rotating.m in Sources */,
 				94CB89BE13B349B60046C335 /* UIImage+Saving.m in Sources */,
 				94CB89BF13B349B60046C335 /* NYXImagesHelper.m in Sources */,
+				94CB89C413B381620046C335 /* GTMNSString+HTML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

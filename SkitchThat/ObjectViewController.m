@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "UIImage+Resizing.h"
+#import "GTMNSString+HTML.h"
 
 #import "NJOSkitchService.h"
 #import "NJOSkitchResponse.h"
@@ -290,7 +291,7 @@ enum {
                     cell.textLabel.text = _objectTitle;
                     break;
                 case kObjectViewControllerTableSectionDetailsRowDecsription:
-                    cell.textLabel.text = _objectDescription;
+                    cell.textLabel.text = [_objectDescription gtm_stringByUnescapingFromHTML];
                     break;
                 case kObjectViewControllerTableSectionDetailsRowDimensions:
                     cell.textLabel.text = [NSString stringWithFormat:@"%dx%d", _objectWidth, _objectHeight];
