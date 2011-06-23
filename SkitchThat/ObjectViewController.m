@@ -50,6 +50,10 @@ enum {
     kObjectViewControllerTableSectionLinksNumRows
 };
 
+@interface ObjectViewController ()
+- (void)handleThumbnailTapped:(UITapGestureRecognizer *)sender;
+@end
+
 @interface ObjectViewController (Private)
 - (UIImage *)thumbnailImage;
 - (CGFloat) groupedCellMarginWithTableWidth:(CGFloat)tableViewWidth;
@@ -122,6 +126,10 @@ enum {
     _hud = [[MBProgressHUD alloc] initWithView:self.view];
     _hud.labelText = @"Loading...";
     [self.view addSubview:_hud];
+
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleThumbnailTapped:)];
+    [_imageView addGestureRecognizer:tapGestureRecognizer];
+    [tapGestureRecognizer release];
 }
 
 - (void)viewDidUnload {
@@ -343,16 +351,19 @@ enum {
             switch (indexPath.row) {
                 case kObjectViewControllerTableSectionDetailsRowThumbnail:
                 {
-                    NSString *url = [_skitchResponse objectForKey:@"stream"];
-                    MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:url]];
-                    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithPhotos:[NSArray arrayWithObject:photo]];
-                    [self.navigationController pushViewController:browser animated:YES];
-                    [browser release];
-
                     break;
                 }
             }
     }
+}
+
+#pragma mark - Gesture recognisers
+- (void)handleThumbnailTapped:(UITapGestureRecognizer *)sender {
+    NSString *url = [_skitchResponse objectForKey:@"stream"];
+    MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:url]];
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithPhotos:[NSArray arrayWithObject:photo]];
+    [self.navigationController pushViewController:browser animated:YES];
+    [browser release];
 }
 
 @end

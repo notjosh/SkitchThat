@@ -101,7 +101,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
-					<object class="NSColorSpace" key="NSCustomColorSpace" id="991734266">
+					<object class="NSColorSpace" key="NSCustomColorSpace" id="590472162">
 						<int key="NSID">2</int>
 					</object>
 				</object>
@@ -111,19 +111,18 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
-			<object class="IBUIView" id="855686844">
+			<object class="IBUIView" id="721774418">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">293</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIImageView" id="242394988">
-						<reference key="NSNextResponder" ref="855686844"/>
+						<reference key="NSNextResponder" ref="721774418"/>
 						<int key="NSvFlags">301</int>
 						<string key="NSFrameSize">{100, 128}</string>
-						<reference key="NSSuperview" ref="855686844"/>
+						<reference key="NSSuperview" ref="721774418"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</object>
@@ -134,7 +133,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
-					<reference key="NSCustomColorSpace" ref="991734266"/>
+					<reference key="NSCustomColorSpace" ref="590472162"/>
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
@@ -186,7 +185,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">shadowView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="855686844"/>
+						<reference key="destination" ref="721774418"/>
 					</object>
 					<int key="connectionID">12</int>
 				</object>
@@ -227,7 +226,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">11</int>
-						<reference key="object" ref="855686844"/>
+						<reference key="object" ref="721774418"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="242394988"/>
@@ -237,7 +236,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<object class="IBObjectRecord">
 						<int key="objectID">8</int>
 						<reference key="object" ref="242394988"/>
-						<reference key="parent" ref="855686844"/>
+						<reference key="parent" ref="721774418"/>
 					</object>
 				</object>
 			</object>
