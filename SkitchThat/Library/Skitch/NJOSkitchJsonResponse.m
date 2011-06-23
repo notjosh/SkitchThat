@@ -22,7 +22,7 @@
         NSDictionary *dictionary = [[CJSONDeserializer deserializer] deserializeAsDictionary:jsonData error:&error];
 
         if (nil == error) {
-            _result = [[dictionary objectForKey:@"result"] intValue];
+            _result = [[dictionary objectForKey:@"result"] intValue] - 1;       // JSON true/false becomes 1/0 as intValue
             _message = [[dictionary objectForKey:@"message"] retain];
 
             _skitchResponse = [[dictionary objectForKey:@"info"] retain];
