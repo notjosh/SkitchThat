@@ -120,7 +120,7 @@
     NSLog(@"handleMockGuidTapped");
     
     ObjectViewController *objectViewController = [[ObjectViewController alloc] initWithNibName:@"ObjectViewController" bundle:nil];
-    objectViewController.guid = @"ea2787-319cfc-4466a4-dd1e8f-d9181b-55";
+    objectViewController.guid = @"122753-adfd77-4a82b4-3df7cd-b1cadb-75";
     [self.navigationController pushViewController:objectViewController animated:YES];
     [objectViewController release];
 }
