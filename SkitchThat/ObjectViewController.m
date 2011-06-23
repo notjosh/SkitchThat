@@ -85,14 +85,21 @@ enum {
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    NJOSkitchService *s = [[NJOSkitchService alloc] init];
-    s.delegate = self;
-    [s fetchObject:_guid];
-    [s release];
+    if (nil == _skitchResponse) {
+        NJOSkitchService *s = [[NJOSkitchService alloc] init];
+        s.delegate = self;
+        [s fetchObject:_guid];
+        [s release];
 
-    [_hud show:YES];
+        [_hud show:YES];
 
-    _tableView.hidden = YES;
+        _tableView.hidden = YES;
+    }
+
+    // Set status/navigation bar style to normal
+	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
+    self.navigationController.navigationBar.tintColor = nil;
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
 }
 
 - (void)viewDidLoad {
