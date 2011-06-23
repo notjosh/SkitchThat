@@ -23,7 +23,7 @@
 
     NSDictionary *_skitchResponse;
 
-    UIImage *_thumbnailImage;
+    NSData *_thumbnailData;
 }
 
 @property (retain, nonatomic) NSString *guid;

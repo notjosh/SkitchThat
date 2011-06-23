@@ -74,6 +74,8 @@ enum {
     [_objectDescription release], _objectDescription = nil;
     [_skitchResponse release], _skitchResponse = nil;
 
+    [_thumbnailData release], _thumbnailData = nil;
+
     [super dealloc];
 }
 
@@ -208,12 +210,10 @@ enum {
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"ObjectTextTableCell";
+    static NSString *LabelCellIdentifier     = @"LabelTableCell";
+    static NSString *ThumbnailCellIdentifier = @"ThumbnailLabelTableCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-    }
+    UITableViewCell *cell = nil;
 
     switch (indexPath.section) {
         case kObjectViewControllerTableSectionDetails:
@@ -221,25 +221,60 @@ enum {
             switch (indexPath.row) {
                 case kObjectViewControllerTableSectionDetailsRowThumbnail:
                 {
-                    cell.textLabel.text = @"";
+                    cell = [tableView dequeueReusableCellWithIdentifier:ThumbnailCellIdentifier];
+                    if (cell == nil) {
+                        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ThumbnailCellIdentifier] autorelease];
+                    }
 
-                    UIImage *image = [self thumbnailImage];
-
-                    _imageView.image = image;
-                    _imageView.frame = CGRectMake(0.0f, 0.0f, image.size.width, image.size.height);
                     _imageView.layer.cornerRadius = 6.0f;
                     _imageView.layer.masksToBounds = YES;
-
-                    _shadowView.frame = _imageView.frame;
-                    _shadowView.center = CGPointMake(cell.center.x, image.size.height / 2 + THUMBNAIL_CELL_PADDING);
 
                     _shadowView.backgroundColor = [UIColor clearColor];
                     _shadowView.layer.shadowColor = [[UIColor blackColor] CGColor];
                     _shadowView.layer.shadowOffset = CGSizeMake(0.0f, 3.0f);
                     _shadowView.layer.shadowOpacity = 0.5f;
                     _shadowView.layer.shadowRadius = 3.0f;
-
+                    
                     [cell addSubview:_shadowView];
+
+                    break;
+                }
+                case kObjectViewControllerTableSectionDetailsRowName:
+                case kObjectViewControllerTableSectionDetailsRowDecsription:
+                case kObjectViewControllerTableSectionDetailsRowDimensions:
+                    cell = [tableView dequeueReusableCellWithIdentifier:LabelCellIdentifier];
+                    if (cell == nil) {
+                        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LabelCellIdentifier] autorelease];
+                    }
+
+                    break;
+            }
+            break;
+        case kObjectViewControllerTableSectionComments:
+        case kObjectViewControllerTableSectionLinks:
+        default:
+            cell = [tableView dequeueReusableCellWithIdentifier:LabelCellIdentifier];
+            if (cell == nil) {
+                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LabelCellIdentifier] autorelease];
+            }
+
+            break;
+    }
+
+    NSAssert(nil != cell, @"Cell was null!");
+
+    switch (indexPath.section) {
+        case kObjectViewControllerTableSectionDetails:
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            switch (indexPath.row) {
+                case kObjectViewControllerTableSectionDetailsRowThumbnail:
+                {
+                    UIImage *image = [self thumbnailImage];
+                    _imageView.image = image;
+                    _imageView.frame = CGRectMake(0.0f, 0.0f, image.size.width, image.size.height);
+
+                    _shadowView.frame = _imageView.frame;
+                    _shadowView.center = CGPointMake(cell.center.x, image.size.height / 2 + THUMBNAIL_CELL_PADDING);
 
                     break;
                 }
@@ -329,25 +364,20 @@ enum {
         return nil;
     }
 
-    NSData *d = [NSData dataWithContentsOfURL:[NSURL URLWithString:_objectThumbnailUrl]];
-    UIImage *image = [UIImage imageWithData:d];
+    if (nil == _thumbnailData) {
+        _thumbnailData = [[NSData dataWithContentsOfURL:[NSURL URLWithString:_objectThumbnailUrl]] retain];
+    }
+
+    UIImage *image = [UIImage imageWithData:_thumbnailData];
 
     CGFloat maxWidth = CGRectGetWidth(_tableView.frame) - THUMBNAIL_CELL_PADDING * 2 - [self groupedCellMarginWithTableWidth:CGRectGetWidth(_tableView.frame)] * 2;
 
-    NSLog(@"using tableView width: %0.1f, maxWidth: %0.1f", CGRectGetWidth(_tableView.frame), maxWidth);
-    NSLog(@"image with size: %@", NSStringFromCGSize(image.size));
-
     // don't grow bigger than image size is!
     if (maxWidth > image.size.width && THUMBNAIL_MAX_HEIGHT > image.size.height) {
-        NSLog(@"xxx");
-        _thumbnailImage = image;
-        return _thumbnailImage;
+        return image;
     }
 
-    _thumbnailImage = [image scaleToFitSize:CGSizeMake(maxWidth, THUMBNAIL_MAX_HEIGHT)];
-    NSLog(@"gives size: %@", NSStringFromCGSize(_thumbnailImage.size));
-
-    return _thumbnailImage;
+    return [image scaleToFitSize:CGSizeMake(maxWidth, THUMBNAIL_MAX_HEIGHT)];
 }
 
 // voodoo. http://stackoverflow.com/questions/4708085/how-to-determine-margin-of-a-grouped-uitableview-or-better-how-to-set-it/4872199#4872199
