@@ -22,11 +22,14 @@
     NSUInteger _objectHeight;
 
     NSDictionary *_skitchResponse;
+
+    UIImage *_thumbnailImage;
 }
 
 @property (retain, nonatomic) NSString *guid;
 
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
+@property (retain, nonatomic) IBOutlet UIView *shadowView;
 @property (retain, nonatomic) IBOutlet UIImageView *imageView;
 
 @end

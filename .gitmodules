@@ -16,3 +16,6 @@
 [submodule "Externals/MWPhotoBrowser"]
 	path = Externals/MWPhotoBrowser
 	url = https://github.com/mwaterfall/MWPhotoBrowser.git
+[submodule "Externals/NYXImagesUtilities"]
+	path = Externals/NYXImagesUtilities
+	url = https://github.com/Nyx0uf/NYXImagesUtilities.git

@@ -8,6 +8,10 @@
 
 #import "ObjectViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
+#import "UIImage+Resizing.h"
+
 #import "NJOSkitchService.h"
 #import "NJOSkitchResponse.h"
 
@@ -15,7 +19,8 @@
 
 #import "MWPhotoBrowser.h"
 
-#define THUMBNAIL_HEIGHT 100.0f
+#define THUMBNAIL_MAX_HEIGHT 100.0f
+#define THUMBNAIL_CELL_PADDING 10.0f
 
 enum {
     kObjectViewControllerTableSectionDetails,
@@ -45,15 +50,22 @@ enum {
     kObjectViewControllerTableSectionLinksNumRows
 };
 
+@interface ObjectViewController (Private)
+- (UIImage *)thumbnailImage;
+- (CGFloat) groupedCellMarginWithTableWidth:(CGFloat)tableViewWidth;
+@end
+
 @implementation ObjectViewController
 
 @synthesize guid = _guid;
 @synthesize tableView = _tableView;
+@synthesize shadowView = _shadowView;
 @synthesize imageView = _imageView;
 
 - (void)dealloc {
     [_guid release], _guid = nil;
     [_tableView release], _tableView = nil;
+    [_shadowView release], _shadowView = nil;
     [_imageView release], _imageView = nil;
     
     [_hud release], _hud = nil;
@@ -209,13 +221,25 @@ enum {
             switch (indexPath.row) {
                 case kObjectViewControllerTableSectionDetailsRowThumbnail:
                 {
-                    NSData *d = [NSData dataWithContentsOfURL:[NSURL URLWithString:_objectThumbnailUrl]];
-                    UIImage *image = [UIImage imageWithData:d];
+                    cell.textLabel.text = @"";
+
+                    UIImage *image = [self thumbnailImage];
 
                     _imageView.image = image;
-                    _imageView.frame = CGRectMake(CGRectGetMinX(cell.contentView.frame), CGRectGetMinY(cell.contentView.frame), CGRectGetWidth(cell.contentView.frame), THUMBNAIL_HEIGHT);
+                    _imageView.frame = CGRectMake(0.0f, 0.0f, image.size.width, image.size.height);
+                    _imageView.layer.cornerRadius = 6.0f;
+                    _imageView.layer.masksToBounds = YES;
 
-                    [cell addSubview:_imageView];
+                    _shadowView.frame = _imageView.frame;
+                    _shadowView.center = CGPointMake(cell.center.x, image.size.height / 2 + THUMBNAIL_CELL_PADDING);
+
+                    _shadowView.backgroundColor = [UIColor clearColor];
+                    _shadowView.layer.shadowColor = [[UIColor blackColor] CGColor];
+                    _shadowView.layer.shadowOffset = CGSizeMake(0.0f, 3.0f);
+                    _shadowView.layer.shadowOpacity = 0.5f;
+                    _shadowView.layer.shadowRadius = 3.0f;
+
+                    [cell addSubview:_shadowView];
 
                     break;
                 }
@@ -254,7 +278,15 @@ enum {
         case kObjectViewControllerTableSectionDetails:
             switch (indexPath.row) {
                 case kObjectViewControllerTableSectionDetailsRowThumbnail:
-                    return THUMBNAIL_HEIGHT;
+                {
+                    UIImage *image = [self thumbnailImage];
+
+                    if (nil == image) {
+                        return 0.0f;
+                    }
+
+                    return image.size.height + THUMBNAIL_CELL_PADDING * 2;
+                }
             }
     }
 
@@ -286,6 +318,52 @@ enum {
                 }
             }
     }
+}
+
+@end
+
+@implementation ObjectViewController (Private)
+
+- (UIImage *)thumbnailImage {
+    if (nil == _objectThumbnailUrl) {
+        return nil;
+    }
+
+    NSData *d = [NSData dataWithContentsOfURL:[NSURL URLWithString:_objectThumbnailUrl]];
+    UIImage *image = [UIImage imageWithData:d];
+
+    CGFloat maxWidth = CGRectGetWidth(_tableView.frame) - THUMBNAIL_CELL_PADDING * 2 - [self groupedCellMarginWithTableWidth:CGRectGetWidth(_tableView.frame)] * 2;
+
+    NSLog(@"using tableView width: %0.1f, maxWidth: %0.1f", CGRectGetWidth(_tableView.frame), maxWidth);
+    NSLog(@"image with size: %@", NSStringFromCGSize(image.size));
+
+    // don't grow bigger than image size is!
+    if (maxWidth > image.size.width && THUMBNAIL_MAX_HEIGHT > image.size.height) {
+        NSLog(@"xxx");
+        _thumbnailImage = image;
+        return _thumbnailImage;
+    }
+
+    _thumbnailImage = [image scaleToFitSize:CGSizeMake(maxWidth, THUMBNAIL_MAX_HEIGHT)];
+    NSLog(@"gives size: %@", NSStringFromCGSize(_thumbnailImage.size));
+
+    return _thumbnailImage;
+}
+
+// voodoo. http://stackoverflow.com/questions/4708085/how-to-determine-margin-of-a-grouped-uitableview-or-better-how-to-set-it/4872199#4872199
+- (CGFloat)groupedCellMarginWithTableWidth:(CGFloat)tableViewWidth {
+    CGFloat marginWidth;
+    if (tableViewWidth > 20) {
+        if (tableViewWidth < 400) {
+            marginWidth = 10;
+        } else {
+            marginWidth = MAX(31, MIN(45, tableViewWidth*0.06));
+        }
+    } else {
+        marginWidth = tableViewWidth - 10;
+    }
+
+    return marginWidth;
 }
 
 @end
