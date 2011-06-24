@@ -22,6 +22,8 @@
 		42C9A4C913B264BF008E2B7D /* UIBarButtonItemArrowLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C9A4C513B264BF008E2B7D /* UIBarButtonItemArrowLeft@2x.png */; };
 		42C9A4CA13B264BF008E2B7D /* UIBarButtonItemArrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C9A4C613B264BF008E2B7D /* UIBarButtonItemArrowRight.png */; };
 		42C9A4CB13B264BF008E2B7D /* UIBarButtonItemArrowRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C9A4C713B264BF008E2B7D /* UIBarButtonItemArrowRight@2x.png */; };
+		9437450E13B4C53500EC5DF0 /* InitialisationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9437450C13B4C53500EC5DF0 /* InitialisationViewController.m */; };
+		9437450F13B4C53500EC5DF0 /* InitialisationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9437450D13B4C53500EC5DF0 /* InitialisationViewController.xib */; };
 		94AE397413B1F83200E27F98 /* NJOSkitchXmlResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 94AE397313B1F83200E27F98 /* NJOSkitchXmlResponse.m */; };
 		94AE397813B1F96D00E27F98 /* NJOSkitchJsonResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 94AE397713B1F96D00E27F98 /* NJOSkitchJsonResponse.m */; };
 		94AE399213B1FAF100E27F98 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 94AE397B13B1FAF100E27F98 /* CDataScanner.m */; };
@@ -112,6 +114,9 @@
 		42C9A4C513B264BF008E2B7D /* UIBarButtonItemArrowLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UIBarButtonItemArrowLeft@2x.png"; path = "Externals/MWPhotoBrowser/UIBarButtonItemArrowLeft@2x.png"; sourceTree = SOURCE_ROOT; };
 		42C9A4C613B264BF008E2B7D /* UIBarButtonItemArrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UIBarButtonItemArrowRight.png; path = Externals/MWPhotoBrowser/UIBarButtonItemArrowRight.png; sourceTree = SOURCE_ROOT; };
 		42C9A4C713B264BF008E2B7D /* UIBarButtonItemArrowRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UIBarButtonItemArrowRight@2x.png"; path = "Externals/MWPhotoBrowser/UIBarButtonItemArrowRight@2x.png"; sourceTree = SOURCE_ROOT; };
+		9437450B13B4C53500EC5DF0 /* InitialisationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialisationViewController.h; sourceTree = "<group>"; };
+		9437450C13B4C53500EC5DF0 /* InitialisationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialisationViewController.m; sourceTree = "<group>"; };
+		9437450D13B4C53500EC5DF0 /* InitialisationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InitialisationViewController.xib; sourceTree = "<group>"; };
 		94AE397213B1F83200E27F98 /* NJOSkitchXmlResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; name = NJOSkitchXmlResponse.h; path = Library/Skitch/NJOSkitchXmlResponse.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 		94AE397313B1F83200E27F98 /* NJOSkitchXmlResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; name = NJOSkitchXmlResponse.m; path = Library/Skitch/NJOSkitchXmlResponse.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 		94AE397613B1F96D00E27F98 /* NJOSkitchJsonResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NJOSkitchJsonResponse.h; path = Library/Skitch/NJOSkitchJsonResponse.h; sourceTree = "<group>"; };
@@ -388,6 +393,9 @@
 				94BBF8AD13B0B4110066D1E3 /* SkitchThatAppDelegate.h */,
 				94BBF8AE13B0B4110066D1E3 /* SkitchThatAppDelegate.m */,
 				94BBF8B013B0B4110066D1E3 /* MainWindow.xib */,
+				9437450B13B4C53500EC5DF0 /* InitialisationViewController.h */,
+				9437450C13B4C53500EC5DF0 /* InitialisationViewController.m */,
+				9437450D13B4C53500EC5DF0 /* InitialisationViewController.xib */,
 				94F86E3113B0E20A00202524 /* CredentialsViewController.h */,
 				94F86E3213B0E20A00202524 /* CredentialsViewController.m */,
 				94F86E3313B0E20A00202524 /* CredentialsViewController.xib */,
@@ -667,6 +675,7 @@
 				42C9A4C913B264BF008E2B7D /* UIBarButtonItemArrowLeft@2x.png in Resources */,
 				42C9A4CA13B264BF008E2B7D /* UIBarButtonItemArrowRight.png in Resources */,
 				42C9A4CB13B264BF008E2B7D /* UIBarButtonItemArrowRight@2x.png in Resources */,
+				9437450F13B4C53500EC5DF0 /* InitialisationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -728,6 +737,7 @@
 				94CB89BE13B349B60046C335 /* UIImage+Saving.m in Sources */,
 				94CB89BF13B349B60046C335 /* NYXImagesHelper.m in Sources */,
 				94CB89C413B381620046C335 /* GTMNSString+HTML.m in Sources */,
+				9437450E13B4C53500EC5DF0 /* InitialisationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

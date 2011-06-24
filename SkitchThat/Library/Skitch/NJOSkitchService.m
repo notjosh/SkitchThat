@@ -25,6 +25,8 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
 @interface NJOSkitchService (SkitchRawAPI)
 - (void)addObject:(NSString *)objectData type:(NSString *)type name:(NSString *)name objectSize:(NSUInteger)size;
 
+- (NSString *)generateAuthTokenWithUsername:(NSString *)username password:(NSString *)password;
+
 - (NSURL *)urlForPath:(NSString *)path;
 - (NSURL *)urlForPath:(NSString *)path parameters:(NSDictionary *)parameters;
 @end
@@ -32,6 +34,86 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
 @implementation NJOSkitchService
 
 @synthesize delegate = _delegate;
+
+- (void)authorise {
+    NSString *username = [[NJOSkitchConfig sharedNJOSkitchConfig] username];
+    NSString *password = [[NJOSkitchConfig sharedNJOSkitchConfig] password];
+
+    NSURL *url = [self urlForPath:[NSString stringWithFormat:@"/services/application/authorize"]];
+
+    NSString *authToken = [self generateAuthTokenWithUsername:(NSString *)username password:(NSString *)password];
+
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setPostValue:authToken forKey:@"authtoken"];
+
+    // optional, because we care
+    [request setPostValue:@"Direct" forKey:@"initialchannelid"];
+    [request setPostValue:@"1.0.6" forKey:@"skitchversion"];
+    [request setPostValue:@"10.06.07" forKey:@"osversion"];
+    [request setPostValue:@"D140ECC6-8955-0844-5BF8-53C262B5DB43" forKey:@"installationid"];
+    [request setPostValue:@"Direct" forKey:@"channelid"];
+    [request setPostValue:@"Mac" forKey:@"platform"];
+    [request setPostValue:@"en-us" forKey:@"language"];
+    
+    [request setCompletionBlock:^(void) {
+        // Use when fetching text data
+        NSString *responseString = [request responseString];
+        
+        NJOSkitchJsonResponse *response = [[NJOSkitchJsonResponse alloc] initWithJsonString:responseString];
+        
+        if ([_delegate respondsToSelector:@selector(requestComplete:)]) {
+            [_delegate requestComplete:response];
+        }
+        
+        [response release];
+    }];
+
+    [request setFailedBlock:^(void) {
+        NSLog(@"Error!");
+
+        NSError *error = [request error];
+        NSLog(@"%@", [error localizedDescription]);
+    }];
+
+    [request startAsynchronous];
+}
+
+- (void)login {
+    NSString *username = [[NJOSkitchConfig sharedNJOSkitchConfig] username];
+    NSString *password = [[NJOSkitchConfig sharedNJOSkitchConfig] password];
+
+    [self loginWithUsername:username password:password];
+}
+
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password {
+    NSURL *url = [self urlForPath:[NSString stringWithFormat:@"/api/1.0/auth/login/"]];
+
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setPostValue:username forKey:@"username"];
+    [request setPostValue:password forKey:@"password"];
+    
+    [request setCompletionBlock:^(void) {
+        // Use when fetching text data
+        NSString *responseString = [request responseString];
+        
+        NJOSkitchJsonResponse *response = [[NJOSkitchJsonResponse alloc] initWithJsonString:responseString];
+        
+        if ([_delegate respondsToSelector:@selector(requestComplete:)]) {
+            [_delegate requestComplete:response];
+        }
+        
+        [response release];
+    }];
+    
+    [request setFailedBlock:^(void) {
+        NSLog(@"Error!");
+        
+        NSError *error = [request error];
+        NSLog(@"%@", [error localizedDescription]);
+    }];
+    
+    [request startAsynchronous];
+}
 
 - (void)addImageAsPng:(UIImage *)image name:(NSString *)name {
     [self addImage:image type:kNJOSkitchServiceTypePng name:name];
@@ -144,6 +226,14 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
     }];
 
     [request startAsynchronous];
+}
+
+- (NSString *)generateAuthTokenWithUsername:(NSString *)username password:(NSString *)password {
+    NSString *tokenRaw = [NSString stringWithFormat:@"%@|%@",
+                          [ASIHTTPRequest base64forData:[username dataUsingEncoding:NSUTF8StringEncoding]],
+                          [ASIHTTPRequest base64forData:[password dataUsingEncoding:NSUTF8StringEncoding]]];
+
+    return [ASIHTTPRequest base64forData:[tokenRaw dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
 - (NSURL *)urlForPath:(NSString *)path {
