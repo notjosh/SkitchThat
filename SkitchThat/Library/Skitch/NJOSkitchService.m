@@ -55,8 +55,7 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
         objectData = UIImagePNGRepresentation(image);
     }
 
-    NSString *errorMessage = [NSString stringWithFormat:@"objectData can not be represented as type: %@", type];
-    NSAssert(nil != objectData, errorMessage);
+    NSAssert(nil != objectData, @"objectData can not be represented as valid image MIME type");
 
     NSString *objectString = [ASIHTTPRequest base64forData:objectData];
 
