@@ -32,7 +32,30 @@
     return (nil != self.username && nil != self.password);
 }
 
+- (void)clearCredentials {
+    if (nil == self.username) {
+        return;
+    }
+
+    NSError *error = nil;
+    [SFHFKeychainUtils deleteItemForUsername:self.username andServiceName:[self serviceName] error:&error];
+
+    if (nil != error) {
+        NSLog(@"An error occurred setting password: %@", [error localizedDescription]);
+    }
+
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];
+}
+
 - (void)setUsername:(NSString *)username password:(NSString *)password {
+    NSParameterAssert(nil != username);
+    NSParameterAssert(nil != password);
+
+    if ([@"" isEqualToString:username] ||
+        [@"" isEqualToString:password]) {
+        return;
+    }
+
     [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"username"];
 
     NSError *error = nil;

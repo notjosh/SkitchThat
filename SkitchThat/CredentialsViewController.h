@@ -17,5 +17,6 @@
 
 - (IBAction)handleCancelTapped:(id)sender;
 - (IBAction)handleDoneTapped:(id)sender;
+- (IBAction)handleLogoutTapped:(id)sender;
 
 @end

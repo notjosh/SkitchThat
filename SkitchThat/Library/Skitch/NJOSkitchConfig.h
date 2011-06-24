@@ -16,6 +16,7 @@
 + (NJOSkitchConfig *)sharedNJOSkitchConfig;
 
 - (BOOL)hasCredentials;
+- (void)clearCredentials;
 
 - (void)setUsername:(NSString *)username password:(NSString *)password;
 - (NSString *)username;

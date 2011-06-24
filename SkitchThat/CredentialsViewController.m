@@ -15,6 +15,10 @@ enum {
     kCredentialsViewControllerTagPassword = 1
 };
 
+@interface CredentialsViewController ()
+- (void)populateCredentialsFields;
+@end
+
 @implementation CredentialsViewController
 
 @synthesize usernameField = _usernameField;
@@ -44,13 +48,7 @@ enum {
 #pragma mark - View lifecycle
 
 - (void)viewWillAppear:(BOOL)animated {
-    NJOSkitchConfig *c = [NJOSkitchConfig sharedNJOSkitchConfig];
-    
-    NSString *username = [c username];
-    NSString *password = [c password];
-
-    _usernameField.text = username;
-    _passwordField.text = password;
+    [self populateCredentialsFields];
 
     [super viewWillAppear:animated];
 }
@@ -75,6 +73,16 @@ enum {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+- (void)populateCredentialsFields {
+    NJOSkitchConfig *c = [NJOSkitchConfig sharedNJOSkitchConfig];
+    
+    NSString *username = [c username];
+    NSString *password = [c password];
+    
+    _usernameField.text = username;
+    _passwordField.text = password;
+}
+
 - (IBAction)handleCancelTapped:(id)sender {
     [self dismissModalViewControllerAnimated:YES];
 }
@@ -84,6 +92,13 @@ enum {
     [c setUsername:_usernameField.text password:_passwordField.text];
 
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction)handleLogoutTapped:(id)sender {
+    NJOSkitchConfig *c = [NJOSkitchConfig sharedNJOSkitchConfig];
+    [c clearCredentials];
+
+    [self populateCredentialsFields];
 }
 
 @end
