@@ -25,7 +25,19 @@
             _result = [[dictionary objectForKey:@"result"] intValue] - 1;       // JSON true/false becomes 1/0 as intValue
             _message = [[dictionary objectForKey:@"message"] retain];
 
-            _skitchResponse = [[dictionary objectForKey:@"info"] retain];
+            _skitchResponse = [dictionary objectForKey:@"info"];
+
+            if (nil == _skitchResponse) {
+                NSMutableDictionary *tmp = [dictionary mutableCopy];
+                [tmp removeObjectForKey:@"result"];
+                [tmp removeObjectForKey:@"message"];
+
+                _skitchResponse = [tmp copy];
+
+                [tmp release];
+            } else {
+                [_skitchResponse retain];
+            }
         }
     }
     

@@ -10,25 +10,28 @@
 
 #import "InitialisationViewController.h"
 
-@interface SkitchThatAppDelegate (Private)
-- (UIViewController *)viewControllerForState:(kSkitchThatAppDelegateState)state;
-@end
 
 @implementation SkitchThatAppDelegate
 
 @synthesize window = _window;
 @synthesize navigationController = _navigationController;
 @synthesize initialisationController = _initalisationController;
-@synthesize notAuthenticatedController = _notAuthenticatedController;
 
 - (void)dealloc {
     [_window release];
     [_navigationController release];
+    [_initalisationController release];
+
     [super dealloc];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [self setState:kSkitchThatAppDelegateStateInitialisation];
+
+    _initalisationController = [[InitialisationViewController alloc] initWithNibName:@"InitialisationViewController" bundle:nil];
+    _initalisationController.delegate = self;
+    self.initialisationController = _initalisationController;
+
+    self.window.rootViewController = self.initialisationController;
 
     [self.window makeKeyAndVisible];
     return YES;
@@ -72,38 +75,13 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (void)setState:(kSkitchThatAppDelegateState)state {
-    _state = state;
+#pragma mark - InitialisationViewControllerDelegate
+
+- (void)initialisationDidFinish {
+    self.window.rootViewController = _navigationController;
     
-    UIViewController *vc = [self viewControllerForState:_state];
-    
-    self.window.rootViewController = vc;
+    [_initalisationController release], _initalisationController = nil;
 }
 
 @end
 
-@implementation SkitchThatAppDelegate (Private)
-
-- (UIViewController *)viewControllerForState:(kSkitchThatAppDelegateState)state {
-    switch (state) {
-        case kSkitchThatAppDelegateStateInitialisation:
-            NSLog(@"Switching to state: kSkitchThatAppDelegateStateInitialisation");
-            if (nil == _initalisationController) {
-                self.initialisationController = [[InitialisationViewController alloc] initWithNibName:@"InitialisationViewController" bundle:nil];
-            }
-
-            return _initalisationController;
-
-        case kSkitchThatAppDelegateStateAuthenticated:
-            NSLog(@"Switching to state: kSkitchThatAppDelegateStateAuthenticated");
-            return self.navigationController;
-
-        case kSkitchThatAppDelegateStateNotAuthenticated:
-            NSLog(@"Switching to state: kSkitchThatAppDelegateStateNotAuthenticated");
-            return self.navigationController;
-    }
-
-    return nil;
-}
-
-@end

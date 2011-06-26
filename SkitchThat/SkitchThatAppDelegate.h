@@ -8,21 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum {
-    kSkitchThatAppDelegateStateInitialisation,
-    kSkitchThatAppDelegateStateNotAuthenticated,
-    kSkitchThatAppDelegateStateAuthenticated
-} kSkitchThatAppDelegateState;
+#import "InitialisationViewController.h"
 
-@interface SkitchThatAppDelegate : NSObject <UIApplicationDelegate> {
-    int _state;
+
+@interface SkitchThatAppDelegate : NSObject <UIApplicationDelegate, InitialisationViewControllerDelegate> {
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
-@property (nonatomic, retain) IBOutlet UIViewController *initialisationController;
-@property (nonatomic, retain) IBOutlet UIViewController *notAuthenticatedController;
-
-- (void)setState:(kSkitchThatAppDelegateState)state;
+@property (nonatomic, retain) IBOutlet InitialisationViewController *initialisationController;
 
 @end

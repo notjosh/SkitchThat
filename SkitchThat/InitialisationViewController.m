@@ -8,10 +8,9 @@
 
 #import "InitialisationViewController.h"
 
+#import "NJOSkitchConfig.h"
 #import "NJOSkitchService.h"
 #import "NJOSkitchResponse.h"
-
-#import "SkitchThatAppDelegate.h"
 
 
 @interface InitialisationViewController (Private)
@@ -19,6 +18,8 @@
 @end
 
 @implementation InitialisationViewController
+
+@synthesize delegate = _delegate;
 
 - (void)dealloc {
     [super dealloc];
@@ -60,8 +61,11 @@
 
 #pragma mark - NJOSkitchServiceDelegate
 - (void)requestComplete:(NJOSkitchResponse *)response {
-    SkitchThatAppDelegate *delegate = (SkitchThatAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [delegate setState:[response hasError] ? kSkitchThatAppDelegateStateNotAuthenticated : kSkitchThatAppDelegateStateAuthenticated];
+    if (![response hasError]) {
+        [NJOSkitchConfig sharedNJOSkitchConfig].skitchSession = response.skitchResponse;
+    }
+
+    [_delegate initialisationDidFinish];
 }
 
 @end

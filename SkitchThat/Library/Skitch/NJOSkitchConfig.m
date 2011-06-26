@@ -16,6 +16,8 @@
 
 @implementation NJOSkitchConfig
 
+@synthesize skitchSession = _skitchSession;
+
 + (NJOSkitchConfig *)sharedNJOSkitchConfig {
     static NJOSkitchConfig *sharedNJOSkitchConfig;
     

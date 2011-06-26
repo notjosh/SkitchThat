@@ -13,6 +13,8 @@
     
 }
 
+@property (nonatomic, retain) NSDictionary *skitchSession;
+
 + (NJOSkitchConfig *)sharedNJOSkitchConfig;
 
 - (BOOL)hasCredentials;

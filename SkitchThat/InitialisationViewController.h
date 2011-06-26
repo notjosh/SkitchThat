@@ -11,8 +11,14 @@
 #import "NJOSkitchServiceDelegate.h"
 
 
+@protocol InitialisationViewControllerDelegate <NSObject>
+- (void)initialisationDidFinish;
+@end
+
+
 @interface InitialisationViewController : UIViewController <NJOSkitchServiceDelegate> {
-    
 }
+
+@property (nonatomic, assign) id<InitialisationViewControllerDelegate> delegate;
 
 @end
