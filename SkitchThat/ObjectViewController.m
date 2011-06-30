@@ -13,8 +13,9 @@
 #import "UIImage+Resizing.h"
 #import "GTMNSString+HTML.h"
 
-#import "NJOSkitchService.h"
+#import "NJOSkitchConfig.h"
 #import "NJOSkitchResponse.h"
+#import "NJOSkitchService.h"
 
 #import "MBProgressHUD.h"
 
@@ -42,22 +43,22 @@ enum {
 };
 
 enum {
-    kObjectViewControllerTableSectionCommentsRowAddComment,
-    kObjectViewControllerTableSectionCommentsNumRows
-};
-
-enum {
     kObjectViewControllerTableSectionLinksRowShowLinks,
     kObjectViewControllerTableSectionLinksNumRows
 };
 
 @interface ObjectViewController ()
+
+@property (retain, nonatomic) NSMutableArray *skitchComments;
+
 - (void)handleThumbnailTapped:(UITapGestureRecognizer *)sender;
 @end
 
 @interface ObjectViewController (Private)
 - (UIImage *)thumbnailImage;
 - (CGFloat) groupedCellMarginWithTableWidth:(CGFloat)tableViewWidth;
+
+- (void)loadMoreComments;
 @end
 
 @implementation ObjectViewController
@@ -67,11 +68,15 @@ enum {
 @synthesize shadowView = _shadowView;
 @synthesize imageView = _imageView;
 
+@synthesize skitchComments = _skitchComments;
+
 - (void)dealloc {
     [_guid release], _guid = nil;
     [_tableView release], _tableView = nil;
     [_shadowView release], _shadowView = nil;
     [_imageView release], _imageView = nil;
+
+    [_skitchComments release], _skitchComments = nil;
     
     [_hud release], _hud = nil;
     [_objectThumbnailUrl release], _objectThumbnailUrl = nil;
@@ -87,7 +92,10 @@ enum {
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _commentsPreviouslyExpanded = NO;
+        _commentsSectionExpanded = NO;
+
+        _skitchComments = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -185,7 +193,12 @@ enum {
         case kObjectViewControllerTableSectionDetails:
             return kObjectViewControllerTableSectionDetailsNumRows;
         case kObjectViewControllerTableSectionComments:
-            return kObjectViewControllerTableSectionCommentsNumRows;
+            // toggle row + number of comments (if visible) [+ 'add comment' row, if authenticated]
+            return /* toggle row: */ 1 + 
+                (_commentsSectionExpanded ?
+                    [_skitchComments count] +
+                    ([[NJOSkitchConfig sharedNJOSkitchConfig] hasSession] ? 1 : 0)
+                : 0);
         case kObjectViewControllerTableSectionLinks:
             return kObjectViewControllerTableSectionLinksNumRows;
         case kObjectViewControllerTableSectionPrivacy:
@@ -204,7 +217,7 @@ enum {
         case kObjectViewControllerTableSectionDetails:
             return nil;
         case kObjectViewControllerTableSectionComments:
-            return @"Comments";
+            return [NSString stringWithFormat:@"Comments: (%@)", _commentsSectionExpanded ? @"Y" : @"N"];
         case kObjectViewControllerTableSectionLinks:
             return @"Links";
         case kObjectViewControllerTableSectionPrivacy:
@@ -299,9 +312,34 @@ enum {
             }
             break;
         case kObjectViewControllerTableSectionComments:
-            cell.textLabel.text = @"Add Comment...";
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        {
+            NSInteger count = [tableView numberOfRowsInSection:indexPath.section];
+
+            switch (indexPath.row) {
+                case 0:
+                    cell.textLabel.text = [NSString stringWithFormat:@"Comments (%@)", _commentsSectionExpanded ? @"Y" : @"N"];
+                    cell.accessoryType = UITableViewCellAccessoryNone;
+                    break;
+                    
+                default:
+                    if (count - 1 == indexPath.row) {
+                        cell.textLabel.text = @"Add Comment...";
+                        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                    } else {
+                        // we have a comment row!
+                        NSInteger idx = indexPath.row - 1;
+
+//                        NSDictionary *comment = [_skitchComments objectAtIndex:idx];
+                        NSDictionary *comment = [_skitchComments objectAtIndex:idx];
+
+                        cell.textLabel.text = [comment objectForKey:@"comment"];
+                        cell.accessoryType = UITableViewCellAccessoryNone;
+                    }
+
+                    break;
+            }
             break;
+        }
         case kObjectViewControllerTableSectionLinks:
             cell.textLabel.text = @"Links";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -355,6 +393,59 @@ enum {
                     break;
                 }
             }
+
+            break;
+
+        case kObjectViewControllerTableSectionComments:
+            switch (indexPath.row) {
+                case 0:
+                    _commentsSectionExpanded = !_commentsSectionExpanded;
+
+                    if (_commentsSectionExpanded) {
+
+                        NSMutableArray *indexPathsToInsert = [[NSMutableArray alloc] init];
+
+                        for (NSInteger i = 0; i < [_skitchComments count]; i++) {
+                            [indexPathsToInsert addObject:[NSIndexPath indexPathForRow:i + 1 inSection:indexPath.section]];
+                        }
+
+                        // add 'add comment' row if authenticated
+                        if ([[NJOSkitchConfig sharedNJOSkitchConfig] hasSession]) {
+                            [indexPathsToInsert addObject:[NSIndexPath indexPathForRow:[_skitchComments count] + 1 inSection:indexPath.section]];
+                        }
+
+                        [tableView beginUpdates];
+                        [tableView insertRowsAtIndexPaths:indexPathsToInsert withRowAnimation:UITableViewRowAnimationBottom];
+                        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                        [tableView endUpdates];
+
+                        [indexPathsToInsert release];
+
+                        if (!_commentsPreviouslyExpanded) {
+                            [self loadMoreComments];
+                            _commentsPreviouslyExpanded = YES;
+                        }
+                    } else {
+                        NSMutableArray *indexPathsToDelete = [[NSMutableArray alloc] init];
+
+                        for (NSInteger i = 1; i < [tableView numberOfRowsInSection:indexPath.section]; i++) {
+                            [indexPathsToDelete addObject:[NSIndexPath indexPathForRow:i inSection:indexPath.section]];
+                        }
+
+                        [tableView beginUpdates];
+                        [tableView deleteRowsAtIndexPaths:indexPathsToDelete withRowAnimation:UITableViewRowAnimationTop];
+                        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                        [tableView endUpdates];
+
+                        [indexPathsToDelete release];
+                    }
+
+                    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+
+                    break;
+            }
+            break;
+
     }
 }
 
@@ -365,6 +456,24 @@ enum {
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithPhotos:[NSArray arrayWithObject:photo]];
     [self.navigationController pushViewController:browser animated:YES];
     [browser release];
+}
+
+#pragma mark - KVO observing
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    NSLog(@"observed change on: %@", keyPath);
+    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+}
+
+- (void)insertObject:(id)obj inSkitchCommentsAtIndex:(NSUInteger)index {
+    [_skitchComments insertObject:obj atIndex:index];
+
+    [_tableView beginUpdates];
+    [_tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:index + 1 inSection:kObjectViewControllerTableSectionComments]] withRowAnimation:UITableViewRowAnimationTop];
+    [_tableView endUpdates];
+}
+
+- (void)removeObjectFromSkitchCommentsAtIndex:(NSUInteger)index {
+    [_skitchComments removeObjectAtIndex:index];
 }
 
 @end
@@ -406,6 +515,41 @@ enum {
     }
 
     return marginWidth;
+}
+
+#pragma mark - Skitch API helpers
+- (void)loadMoreComments {
+    NSDictionary *lastComment = [_skitchComments lastObject];
+
+    NSString *fromId = (nil != lastComment) ? [lastComment objectForKey:@"id"] : nil;
+
+    NJOSkitchService *s = [[NJOSkitchService alloc] init];
+
+    s.completionBlock = ^(NJOSkitchResponse *response) {
+        if ([response hasError]) {
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                         message:[response message]
+                                                        delegate:nil
+                                               cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [av show];
+            [av release];
+            
+            return;
+        }
+
+        NSDictionary *comments = [[response skitchResponse] objectForKey:@"comments"];
+
+        if (nil == comments) {
+            return;
+        }
+
+        for (NSDictionary *comment in comments) {
+            [self insertObject:comment inSkitchCommentsAtIndex:[_skitchComments count]];
+        }
+    };
+
+    [s fetchComments:[_skitchResponse objectForKey:@"objectguid"] fromId:fromId];
+    [s release];
 }
 
 @end

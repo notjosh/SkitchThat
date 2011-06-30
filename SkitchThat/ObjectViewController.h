@@ -23,6 +23,9 @@
 
     NSDictionary *_skitchResponse;
 
+    BOOL _commentsPreviouslyExpanded;
+    BOOL _commentsSectionExpanded;
+
     NSData *_thumbnailData;
 }
 

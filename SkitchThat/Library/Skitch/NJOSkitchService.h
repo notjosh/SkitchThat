@@ -16,12 +16,16 @@ extern NSString * const kNJOSkitchServiceTypePng;
 
 extern CGFloat const kNJOSkitchServiceJpegCompressionQuality;
 
+typedef void (^NJOSkitchResponseBlock)(NJOSkitchResponse *response);
 
 @interface NJOSkitchService : NSObject {
-//    id<NJOSkitchServiceDelegate> _delegate;
 }
 
 @property (assign, nonatomic) id<NJOSkitchServiceDelegate> delegate;
+
+@property (copy, nonatomic) NJOSkitchResponseBlock completionBlock;
+@property (copy, nonatomic) NJOSkitchResponseBlock failureBlock;
+@property (copy, nonatomic) NJOSkitchResponseBlock progressBlock;
 
 - (void)authorise;
 - (void)login;
@@ -32,5 +36,6 @@ extern CGFloat const kNJOSkitchServiceJpegCompressionQuality;
 - (void)addImage:(UIImage *)image type:(NSString *)type name:(NSString *)name;
 
 - (void)fetchObject:(NSString *)guid;
+- (void)fetchComments:(NSString *)guid fromId:(NSString *)fromId;
 
 @end

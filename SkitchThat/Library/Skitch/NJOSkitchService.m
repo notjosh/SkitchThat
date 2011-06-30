@@ -31,9 +31,26 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
 - (NSURL *)urlForPath:(NSString *)path parameters:(NSDictionary *)parameters;
 @end
 
+@interface NJOSkitchService (Private)
+- (void)notifyRequestComplete:(ASIHTTPRequest *)request skitchResponse:(NJOSkitchResponse *)skitchResponse;
+- (void)notifyRequestFailed:(ASIHTTPRequest *)request;
+@end
+
 @implementation NJOSkitchService
 
 @synthesize delegate = _delegate;
+
+@synthesize completionBlock = _completionBlock;
+@synthesize failureBlock    = _failureBlock;
+@synthesize progressBlock   = _progressBlock;
+
+- (void)dealloc {
+    [_completionBlock release], _completionBlock = nil;
+    [_failureBlock release],    _failureBlock = nil;
+    [_progressBlock release],   _progressBlock = nil;
+
+    [super dealloc];
+}
 
 - (void)authorise {
     NSString *username = [[NJOSkitchConfig sharedNJOSkitchConfig] username];
@@ -60,7 +77,7 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
         NSString *responseString = [request responseString];
         
         NJOSkitchJsonResponse *response = [[NJOSkitchJsonResponse alloc] initWithJsonString:responseString];
-        
+
         if ([_delegate respondsToSelector:@selector(requestComplete:)]) {
             [_delegate requestComplete:response];
         }
@@ -175,6 +192,34 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
     [request startAsynchronous];
 }
 
+- (void)fetchComments:(NSString *)guid fromId:(NSString *)fromId {
+    NSMutableString *urlString = [NSMutableString stringWithFormat:@"/api/1.0/objects/comments/enum/%@", guid];
+
+    if (nil != fromId) {
+        [urlString appendFormat:@"/%@", fromId];
+    }
+
+    NSLog(@"comments URL: %@", urlString);
+    NSURL *url = [self urlForPath:urlString];
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    
+    [request setCompletionBlock:^(void) {
+        NSString *responseString = [request responseString];
+        NJOSkitchJsonResponse *response = [[NJOSkitchJsonResponse alloc] initWithJsonString:responseString];
+
+        [self notifyRequestComplete:request skitchResponse:response];
+
+        [response release];
+    }];
+    
+    [request setFailedBlock:^(void) {
+        [self notifyRequestFailed:request];
+    }];
+    
+    [request startAsynchronous];
+}
+
 @end
 
 @implementation NJOSkitchService (SkitchRawAPI)
@@ -260,6 +305,27 @@ CGFloat const kNJOSkitchServiceJpegCompressionQuality = 80.0f;
     }
 
     return [self urlForPath:mPath];
+}
+
+@end
+
+@implementation NJOSkitchService (Private)
+
+- (void)notifyRequestComplete:(ASIHTTPRequest *)request skitchResponse:(NJOSkitchResponse *)skitchResponse {
+    if ([_delegate respondsToSelector:@selector(requestComplete:)]) {
+        [_delegate requestComplete:skitchResponse];
+    }
+
+    if (nil != _completionBlock) {
+        _completionBlock(skitchResponse);
+    }
+}
+
+- (void)notifyRequestFailed:(ASIHTTPRequest *)request {
+    NSLog(@"Error!");
+    
+    NSError *error = [request error];
+    NSLog(@"%@", [error localizedDescription]);
 }
 
 @end
