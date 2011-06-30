@@ -30,6 +30,10 @@
     }
 }
 
+- (BOOL)hasSession {
+    return (nil != self.skitchSession);
+}
+
 - (BOOL)hasCredentials {
     return (nil != self.username && nil != self.password);
 }

@@ -17,6 +17,7 @@
 
 + (NJOSkitchConfig *)sharedNJOSkitchConfig;
 
+- (BOOL)hasSession;
 - (BOOL)hasCredentials;
 - (void)clearCredentials;
 
