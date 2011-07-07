@@ -204,7 +204,9 @@ enum {
 	
 	if (!contentView) {
 		NSData *data = [content dataUsingEncoding:NSUTF8StringEncoding];
-		NSAttributedString *string = [[[NSAttributedString alloc] initWithHTML:data documentAttributes:NULL] autorelease];
+        NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[[UIFont systemFontOfSize:10.0f] familyName], DTDefaultFontFamily,
+                                 nil];
+        NSAttributedString *string = [[[NSAttributedString alloc] initWithHTML:data options:options documentAttributes:NULL] autorelease];
 		
 		// set width, height is calculated later from text
 		CGFloat width = self.view.frame.size.width;
