@@ -11,7 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "UIImage+Resizing.h"
-#import "GTMNSString+HTML.h"
+#import "DTAttributedTextContentView.h"
 
 #import "NJOSkitchConfig.h"
 #import "NJOSkitchResponse.h"
@@ -37,7 +37,7 @@ enum {
 enum {
     kObjectViewControllerTableSectionDetailsRowThumbnail,
     kObjectViewControllerTableSectionDetailsRowName,
-    kObjectViewControllerTableSectionDetailsRowDecsription,
+    kObjectViewControllerTableSectionDetailsRowDecscription,
     kObjectViewControllerTableSectionDetailsRowDimensions,
     kObjectViewControllerTableSectionDetailsNumRows
 };
@@ -75,6 +75,7 @@ enum {
     [_tableView release], _tableView = nil;
     [_shadowView release], _shadowView = nil;
     [_imageView release], _imageView = nil;
+    [_contentViewCache release], _contentViewCache = nil;
 
     [_skitchComments release], _skitchComments = nil;
     
@@ -183,12 +184,47 @@ enum {
     _tableView.hidden = NO;
 }
 
+#pragma mark - NSAttributedString+HTML
+- (DTAttributedTextContentView *)contentViewForIndexPath:(NSIndexPath *)indexPath content:(NSString *)content {
+    NSAssert(nil != content, @"Content is nil");
+
+	if (!_contentViewCache) {
+		_contentViewCache = [[NSMutableDictionary alloc] init];
+	}
+	
+	DTAttributedTextContentView *contentView = (id)[_contentViewCache objectForKey:indexPath];
+	
+	if (!contentView) {
+		NSData *data = [content dataUsingEncoding:NSUTF8StringEncoding];
+		NSAttributedString *string = [[[NSAttributedString alloc] initWithHTML:data documentAttributes:NULL] autorelease];
+		
+		// set width, height is calculated later from text
+		CGFloat width = self.view.frame.size.width;
+		[DTAttributedTextContentView setLayerClass:nil];
+		contentView = [[[DTAttributedTextContentView alloc] initWithAttributedString:string width:width - 20.0] autorelease];
+		
+		contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+		contentView.edgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
+		[_contentViewCache setObject:contentView forKey:indexPath];
+	}
+
+	return contentView;
+}
+
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (nil == _skitchResponse) {
+        return 0;
+    }
+
     return kObjectViewControllerTableNumSections;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (nil == _skitchResponse) {
+        return 0;
+    }
+
     switch (section) {
         case kObjectViewControllerTableSectionDetails:
             return kObjectViewControllerTableSectionDetailsNumRows;
@@ -233,6 +269,7 @@ enum {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *LabelCellIdentifier     = @"LabelTableCell";
+    static NSString *DescriptionCellIdentifier = @"DescriptionCellIdentifier";
     static NSString *ThumbnailCellIdentifier = @"ThumbnailLabelTableCell";
     
     UITableViewCell *cell = nil;
@@ -261,8 +298,13 @@ enum {
 
                     break;
                 }
+                case kObjectViewControllerTableSectionDetailsRowDecscription:
+                    cell = [tableView dequeueReusableCellWithIdentifier:DescriptionCellIdentifier];
+                    if (cell == nil) {
+                        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:DescriptionCellIdentifier] autorelease];
+                    }
+                    break;
                 case kObjectViewControllerTableSectionDetailsRowName:
-                case kObjectViewControllerTableSectionDetailsRowDecsription:
                 case kObjectViewControllerTableSectionDetailsRowDimensions:
                     cell = [tableView dequeueReusableCellWithIdentifier:LabelCellIdentifier];
                     if (cell == nil) {
@@ -303,9 +345,14 @@ enum {
                 case kObjectViewControllerTableSectionDetailsRowName:
                     cell.textLabel.text = _objectTitle;
                     break;
-                case kObjectViewControllerTableSectionDetailsRowDecsription:
-                    cell.textLabel.text = [_objectDescription gtm_stringByUnescapingFromHTML];
+                case kObjectViewControllerTableSectionDetailsRowDecscription:
+                {
+                    DTAttributedTextContentView *contentView = [self contentViewForIndexPath:indexPath content:_objectDescription];
+                    
+                    contentView.frame = cell.contentView.bounds;
+                    [cell.contentView addSubview:contentView];
                     break;
+                }
                 case kObjectViewControllerTableSectionDetailsRowDimensions:
                     cell.textLabel.text = [NSString stringWithFormat:@"%dx%d", _objectWidth, _objectHeight];
                     break;
@@ -368,6 +415,13 @@ enum {
                     }
 
                     return image.size.height + THUMBNAIL_CELL_PADDING * 2;
+                }
+
+                case kObjectViewControllerTableSectionDetailsRowDecscription:
+                {
+                    DTAttributedTextContentView *contentView = [self contentViewForIndexPath:indexPath content:_objectDescription];
+                    
+                    return contentView.bounds.size.height + 1.0f; // for cell seperator
                 }
             }
     }

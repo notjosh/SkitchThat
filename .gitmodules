@@ -19,3 +19,6 @@
 [submodule "Externals/NYXImagesUtilities"]
 	path = Externals/NYXImagesUtilities
 	url = https://github.com/Nyx0uf/NYXImagesUtilities.git
+[submodule "Externals/NSAttributedString-Additions-for-HTML"]
+	path = Externals/NSAttributedString-Additions-for-HTML
+	url = https://github.com/Cocoanetics/NSAttributedString-Additions-for-HTML.git

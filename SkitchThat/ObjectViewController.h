@@ -14,6 +14,7 @@
 
 @interface ObjectViewController : UIViewController <NJOSkitchServiceDelegate, UITableViewDataSource, UITableViewDelegate> {
     MBProgressHUD *_hud;
+    NSMutableDictionary *_contentViewCache;
 
     NSString *_objectThumbnailUrl;
     NSString *_objectTitle;

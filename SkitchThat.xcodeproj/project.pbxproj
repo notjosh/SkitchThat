@@ -85,6 +85,33 @@
 		94F86E3D13B0E72900202524 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F86E3C13B0E72900202524 /* SFHFKeychainUtils.m */; };
 		94F86E3F13B0EBC500202524 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94F86E3E13B0EBC500202524 /* Security.framework */; };
 		94F86E4313B0FA2F00202524 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F86E4213B0FA2F00202524 /* NSString+MD5.m */; };
+		94FDC5A913C5AF290025B6FA /* CGUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC57813C5AF290025B6FA /* CGUtils.m */; };
+		94FDC5AA13C5AF290025B6FA /* DTAttributedTextContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC57A13C5AF290025B6FA /* DTAttributedTextContentView.m */; };
+		94FDC5AB13C5AF290025B6FA /* DTAttributedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC57C13C5AF290025B6FA /* DTAttributedTextView.m */; };
+		94FDC5AC13C5AF290025B6FA /* DTCoreTextFontCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC57E13C5AF290025B6FA /* DTCoreTextFontCollection.m */; };
+		94FDC5AD13C5AF290025B6FA /* DTCoreTextFontDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC58013C5AF290025B6FA /* DTCoreTextFontDescriptor.m */; };
+		94FDC5AE13C5AF290025B6FA /* DTCoreTextGlyphRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC58213C5AF290025B6FA /* DTCoreTextGlyphRun.m */; };
+		94FDC5AF13C5AF290025B6FA /* DTCoreTextLayouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC58413C5AF290025B6FA /* DTCoreTextLayouter.m */; };
+		94FDC5B013C5AF290025B6FA /* DTCoreTextLayoutFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC58613C5AF290025B6FA /* DTCoreTextLayoutFrame.m */; };
+		94FDC5B113C5AF290025B6FA /* DTCoreTextLayoutLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC58813C5AF290025B6FA /* DTCoreTextLayoutLine.m */; };
+		94FDC5B213C5AF290025B6FA /* DTCoreTextParagraphStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC58A13C5AF290025B6FA /* DTCoreTextParagraphStyle.m */; };
+		94FDC5B313C5AF290025B6FA /* DTHTMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC58C13C5AF290025B6FA /* DTHTMLElement.m */; };
+		94FDC5B413C5AF290025B6FA /* DTLazyImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC58E13C5AF290025B6FA /* DTLazyImageView.m */; };
+		94FDC5B513C5AF290025B6FA /* DTLinkButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC59013C5AF290025B6FA /* DTLinkButton.m */; };
+		94FDC5B613C5AF290025B6FA /* DTTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC59213C5AF290025B6FA /* DTTextAttachment.m */; };
+		94FDC5B713C5AF290025B6FA /* NSAttributedString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC59413C5AF290025B6FA /* NSAttributedString+HTML.m */; };
+		94FDC5B813C5AF290025B6FA /* NSAttributedStringRunDelegates.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC59613C5AF290025B6FA /* NSAttributedStringRunDelegates.m */; };
+		94FDC5B913C5AF290025B6FA /* NSCharacterSet+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC59813C5AF290025B6FA /* NSCharacterSet+HTML.m */; };
+		94FDC5BA13C5AF290025B6FA /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC59A13C5AF290025B6FA /* NSData+Base64.m */; };
+		94FDC5BB13C5AF290025B6FA /* NSMutableAttributedString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC59C13C5AF290025B6FA /* NSMutableAttributedString+HTML.m */; };
+		94FDC5BC13C5AF290025B6FA /* NSScanner+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC59E13C5AF290025B6FA /* NSScanner+HTML.m */; };
+		94FDC5BD13C5AF290025B6FA /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC5A013C5AF290025B6FA /* NSString+HTML.m */; };
+		94FDC5BE13C5AF290025B6FA /* NSString+UTF8Cleaner.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC5A213C5AF290025B6FA /* NSString+UTF8Cleaner.m */; };
+		94FDC5BF13C5AF290025B6FA /* NSURL+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC5A413C5AF290025B6FA /* NSURL+HTML.m */; };
+		94FDC5C013C5AF290025B6FA /* UIColor+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC5A613C5AF290025B6FA /* UIColor+HTML.m */; };
+		94FDC5C113C5AF290025B6FA /* UIDevice+DTVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FDC5A813C5AF290025B6FA /* UIDevice+DTVersion.m */; };
+		94FDC5C313C5AFC30025B6FA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94FDC5C213C5AFC30025B6FA /* QuartzCore.framework */; };
+		94FDC5C513C5AFE10025B6FA /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94FDC5C413C5AFE10025B6FA /* CoreText.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -229,6 +256,58 @@
 		94F86E3E13B0EBC500202524 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		94F86E4113B0FA2F00202524 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+MD5.h"; path = "Utilities/NSString+MD5.h"; sourceTree = "<group>"; };
 		94F86E4213B0FA2F00202524 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+MD5.m"; path = "Utilities/NSString+MD5.m"; sourceTree = "<group>"; };
+		94FDC57713C5AF290025B6FA /* CGUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGUtils.h; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/CGUtils.h"; sourceTree = SOURCE_ROOT; };
+		94FDC57813C5AF290025B6FA /* CGUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGUtils.m; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/CGUtils.m"; sourceTree = SOURCE_ROOT; };
+		94FDC57913C5AF290025B6FA /* DTAttributedTextContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTAttributedTextContentView.h; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTAttributedTextContentView.h"; sourceTree = SOURCE_ROOT; };
+		94FDC57A13C5AF290025B6FA /* DTAttributedTextContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DTAttributedTextContentView.m; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTAttributedTextContentView.m"; sourceTree = SOURCE_ROOT; };
+		94FDC57B13C5AF290025B6FA /* DTAttributedTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTAttributedTextView.h; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTAttributedTextView.h"; sourceTree = SOURCE_ROOT; };
+		94FDC57C13C5AF290025B6FA /* DTAttributedTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DTAttributedTextView.m; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTAttributedTextView.m"; sourceTree = SOURCE_ROOT; };
+		94FDC57D13C5AF290025B6FA /* DTCoreTextFontCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTCoreTextFontCollection.h; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTCoreTextFontCollection.h"; sourceTree = SOURCE_ROOT; };
+		94FDC57E13C5AF290025B6FA /* DTCoreTextFontCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DTCoreTextFontCollection.m; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTCoreTextFontCollection.m"; sourceTree = SOURCE_ROOT; };
+		94FDC57F13C5AF290025B6FA /* DTCoreTextFontDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTCoreTextFontDescriptor.h; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTCoreTextFontDescriptor.h"; sourceTree = SOURCE_ROOT; };
+		94FDC58013C5AF290025B6FA /* DTCoreTextFontDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DTCoreTextFontDescriptor.m; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTCoreTextFontDescriptor.m"; sourceTree = SOURCE_ROOT; };
+		94FDC58113C5AF290025B6FA /* DTCoreTextGlyphRun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTCoreTextGlyphRun.h; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTCoreTextGlyphRun.h"; sourceTree = SOURCE_ROOT; };
+		94FDC58213C5AF290025B6FA /* DTCoreTextGlyphRun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DTCoreTextGlyphRun.m; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTCoreTextGlyphRun.m"; sourceTree = SOURCE_ROOT; };
+		94FDC58313C5AF290025B6FA /* DTCoreTextLayouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTCoreTextLayouter.h; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTCoreTextLayouter.h"; sourceTree = SOURCE_ROOT; };
+		94FDC58413C5AF290025B6FA /* DTCoreTextLayouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DTCoreTextLayouter.m; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTCoreTextLayouter.m"; sourceTree = SOURCE_ROOT; };
+		94FDC58513C5AF290025B6FA /* DTCoreTextLayoutFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTCoreTextLayoutFrame.h; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTCoreTextLayoutFrame.h"; sourceTree = SOURCE_ROOT; };
+		94FDC58613C5AF290025B6FA /* DTCoreTextLayoutFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DTCoreTextLayoutFrame.m; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTCoreTextLayoutFrame.m"; sourceTree = SOURCE_ROOT; };
+		94FDC58713C5AF290025B6FA /* DTCoreTextLayoutLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTCoreTextLayoutLine.h; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTCoreTextLayoutLine.h"; sourceTree = SOURCE_ROOT; };
+		94FDC58813C5AF290025B6FA /* DTCoreTextLayoutLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DTCoreTextLayoutLine.m; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTCoreTextLayoutLine.m"; sourceTree = SOURCE_ROOT; };
+		94FDC58913C5AF290025B6FA /* DTCoreTextParagraphStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTCoreTextParagraphStyle.h; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTCoreTextParagraphStyle.h"; sourceTree = SOURCE_ROOT; };
+		94FDC58A13C5AF290025B6FA /* DTCoreTextParagraphStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DTCoreTextParagraphStyle.m; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTCoreTextParagraphStyle.m"; sourceTree = SOURCE_ROOT; };
+		94FDC58B13C5AF290025B6FA /* DTHTMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTHTMLElement.h; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTHTMLElement.h"; sourceTree = SOURCE_ROOT; };
+		94FDC58C13C5AF290025B6FA /* DTHTMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DTHTMLElement.m; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTHTMLElement.m"; sourceTree = SOURCE_ROOT; };
+		94FDC58D13C5AF290025B6FA /* DTLazyImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTLazyImageView.h; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTLazyImageView.h"; sourceTree = SOURCE_ROOT; };
+		94FDC58E13C5AF290025B6FA /* DTLazyImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DTLazyImageView.m; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTLazyImageView.m"; sourceTree = SOURCE_ROOT; };
+		94FDC58F13C5AF290025B6FA /* DTLinkButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTLinkButton.h; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTLinkButton.h"; sourceTree = SOURCE_ROOT; };
+		94FDC59013C5AF290025B6FA /* DTLinkButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DTLinkButton.m; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTLinkButton.m"; sourceTree = SOURCE_ROOT; };
+		94FDC59113C5AF290025B6FA /* DTTextAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTTextAttachment.h; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTTextAttachment.h"; sourceTree = SOURCE_ROOT; };
+		94FDC59213C5AF290025B6FA /* DTTextAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DTTextAttachment.m; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/DTTextAttachment.m"; sourceTree = SOURCE_ROOT; };
+		94FDC59313C5AF290025B6FA /* NSAttributedString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSAttributedString+HTML.h"; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/NSAttributedString+HTML.h"; sourceTree = SOURCE_ROOT; };
+		94FDC59413C5AF290025B6FA /* NSAttributedString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSAttributedString+HTML.m"; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/NSAttributedString+HTML.m"; sourceTree = SOURCE_ROOT; };
+		94FDC59513C5AF290025B6FA /* NSAttributedStringRunDelegates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSAttributedStringRunDelegates.h; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/NSAttributedStringRunDelegates.h"; sourceTree = SOURCE_ROOT; };
+		94FDC59613C5AF290025B6FA /* NSAttributedStringRunDelegates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSAttributedStringRunDelegates.m; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/NSAttributedStringRunDelegates.m"; sourceTree = SOURCE_ROOT; };
+		94FDC59713C5AF290025B6FA /* NSCharacterSet+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSCharacterSet+HTML.h"; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/NSCharacterSet+HTML.h"; sourceTree = SOURCE_ROOT; };
+		94FDC59813C5AF290025B6FA /* NSCharacterSet+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSCharacterSet+HTML.m"; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/NSCharacterSet+HTML.m"; sourceTree = SOURCE_ROOT; };
+		94FDC59913C5AF290025B6FA /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/NSData+Base64.h"; sourceTree = SOURCE_ROOT; };
+		94FDC59A13C5AF290025B6FA /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/NSData+Base64.m"; sourceTree = SOURCE_ROOT; };
+		94FDC59B13C5AF290025B6FA /* NSMutableAttributedString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableAttributedString+HTML.h"; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/NSMutableAttributedString+HTML.h"; sourceTree = SOURCE_ROOT; };
+		94FDC59C13C5AF290025B6FA /* NSMutableAttributedString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableAttributedString+HTML.m"; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/NSMutableAttributedString+HTML.m"; sourceTree = SOURCE_ROOT; };
+		94FDC59D13C5AF290025B6FA /* NSScanner+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSScanner+HTML.h"; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/NSScanner+HTML.h"; sourceTree = SOURCE_ROOT; };
+		94FDC59E13C5AF290025B6FA /* NSScanner+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSScanner+HTML.m"; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/NSScanner+HTML.m"; sourceTree = SOURCE_ROOT; };
+		94FDC59F13C5AF290025B6FA /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+HTML.h"; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/NSString+HTML.h"; sourceTree = SOURCE_ROOT; };
+		94FDC5A013C5AF290025B6FA /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+HTML.m"; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/NSString+HTML.m"; sourceTree = SOURCE_ROOT; };
+		94FDC5A113C5AF290025B6FA /* NSString+UTF8Cleaner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+UTF8Cleaner.h"; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/NSString+UTF8Cleaner.h"; sourceTree = SOURCE_ROOT; };
+		94FDC5A213C5AF290025B6FA /* NSString+UTF8Cleaner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+UTF8Cleaner.m"; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/NSString+UTF8Cleaner.m"; sourceTree = SOURCE_ROOT; };
+		94FDC5A313C5AF290025B6FA /* NSURL+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+HTML.h"; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/NSURL+HTML.h"; sourceTree = SOURCE_ROOT; };
+		94FDC5A413C5AF290025B6FA /* NSURL+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURL+HTML.m"; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/NSURL+HTML.m"; sourceTree = SOURCE_ROOT; };
+		94FDC5A513C5AF290025B6FA /* UIColor+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+HTML.h"; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/UIColor+HTML.h"; sourceTree = SOURCE_ROOT; };
+		94FDC5A613C5AF290025B6FA /* UIColor+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+HTML.m"; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/UIColor+HTML.m"; sourceTree = SOURCE_ROOT; };
+		94FDC5A713C5AF290025B6FA /* UIDevice+DTVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice+DTVersion.h"; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/UIDevice+DTVersion.h"; sourceTree = SOURCE_ROOT; };
+		94FDC5A813C5AF290025B6FA /* UIDevice+DTVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+DTVersion.m"; path = "Externals/NSAttributedString-Additions-for-HTML/Classes/UIDevice+DTVersion.m"; sourceTree = SOURCE_ROOT; };
+		94FDC5C213C5AFC30025B6FA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		94FDC5C413C5AFE10025B6FA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +315,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94FDC5C513C5AFE10025B6FA /* CoreText.framework in Frameworks */,
+				94FDC5C313C5AFC30025B6FA /* QuartzCore.framework in Frameworks */,
 				94CB89C113B34DA80046C335 /* ImageIO.framework in Frameworks */,
 				94F86E3F13B0EBC500202524 /* Security.framework in Frameworks */,
 				94BBF8FE13B0BA280066D1E3 /* libz.1.2.3.dylib in Frameworks */,
@@ -353,6 +434,7 @@
 		94BBF88F13B0B4110066D1E3 = {
 			isa = PBXGroup;
 			children = (
+				94FDC5C413C5AFE10025B6FA /* CoreText.framework */,
 				94BBF8A413B0B4110066D1E3 /* SkitchThat */,
 				94BBF89D13B0B4110066D1E3 /* Frameworks */,
 				94BBF89B13B0B4110066D1E3 /* Products */,
@@ -370,6 +452,7 @@
 		94BBF89D13B0B4110066D1E3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				94FDC5C213C5AFC30025B6FA /* QuartzCore.framework */,
 				94CB89C013B34DA80046C335 /* ImageIO.framework */,
 				94F86E3E13B0EBC500202524 /* Security.framework */,
 				94BBF8FD13B0BA280066D1E3 /* libz.1.2.3.dylib */,
@@ -452,6 +535,7 @@
 				94BBF8D213B0B9950066D1E3 /* ASIHTTPRequest */,
 				425FD0D113B13C5E00D51E52 /* MBProgressHUD */,
 				42C9A4A913B2646B008E2B7D /* MWPhotoBrowser */,
+				94FDC57513C5AE4B0025B6FA /* NSAttributedString-Additions-for-HTML */,
 				94CB89A313B349930046C335 /* NYXImagesUtilities */,
 				94F86E3A13B0E71100202524 /* SFHFKeychainUtils */,
 				94AE397913B1FA9800E27F98 /* TouchJSON */,
@@ -612,6 +696,63 @@
 			name = Utilities;
 			sourceTree = "<group>";
 		};
+		94FDC57513C5AE4B0025B6FA /* NSAttributedString-Additions-for-HTML */ = {
+			isa = PBXGroup;
+			children = (
+				94FDC57713C5AF290025B6FA /* CGUtils.h */,
+				94FDC57813C5AF290025B6FA /* CGUtils.m */,
+				94FDC57913C5AF290025B6FA /* DTAttributedTextContentView.h */,
+				94FDC57A13C5AF290025B6FA /* DTAttributedTextContentView.m */,
+				94FDC57B13C5AF290025B6FA /* DTAttributedTextView.h */,
+				94FDC57C13C5AF290025B6FA /* DTAttributedTextView.m */,
+				94FDC57D13C5AF290025B6FA /* DTCoreTextFontCollection.h */,
+				94FDC57E13C5AF290025B6FA /* DTCoreTextFontCollection.m */,
+				94FDC57F13C5AF290025B6FA /* DTCoreTextFontDescriptor.h */,
+				94FDC58013C5AF290025B6FA /* DTCoreTextFontDescriptor.m */,
+				94FDC58113C5AF290025B6FA /* DTCoreTextGlyphRun.h */,
+				94FDC58213C5AF290025B6FA /* DTCoreTextGlyphRun.m */,
+				94FDC58313C5AF290025B6FA /* DTCoreTextLayouter.h */,
+				94FDC58413C5AF290025B6FA /* DTCoreTextLayouter.m */,
+				94FDC58513C5AF290025B6FA /* DTCoreTextLayoutFrame.h */,
+				94FDC58613C5AF290025B6FA /* DTCoreTextLayoutFrame.m */,
+				94FDC58713C5AF290025B6FA /* DTCoreTextLayoutLine.h */,
+				94FDC58813C5AF290025B6FA /* DTCoreTextLayoutLine.m */,
+				94FDC58913C5AF290025B6FA /* DTCoreTextParagraphStyle.h */,
+				94FDC58A13C5AF290025B6FA /* DTCoreTextParagraphStyle.m */,
+				94FDC58B13C5AF290025B6FA /* DTHTMLElement.h */,
+				94FDC58C13C5AF290025B6FA /* DTHTMLElement.m */,
+				94FDC58D13C5AF290025B6FA /* DTLazyImageView.h */,
+				94FDC58E13C5AF290025B6FA /* DTLazyImageView.m */,
+				94FDC58F13C5AF290025B6FA /* DTLinkButton.h */,
+				94FDC59013C5AF290025B6FA /* DTLinkButton.m */,
+				94FDC59113C5AF290025B6FA /* DTTextAttachment.h */,
+				94FDC59213C5AF290025B6FA /* DTTextAttachment.m */,
+				94FDC59313C5AF290025B6FA /* NSAttributedString+HTML.h */,
+				94FDC59413C5AF290025B6FA /* NSAttributedString+HTML.m */,
+				94FDC59513C5AF290025B6FA /* NSAttributedStringRunDelegates.h */,
+				94FDC59613C5AF290025B6FA /* NSAttributedStringRunDelegates.m */,
+				94FDC59713C5AF290025B6FA /* NSCharacterSet+HTML.h */,
+				94FDC59813C5AF290025B6FA /* NSCharacterSet+HTML.m */,
+				94FDC59913C5AF290025B6FA /* NSData+Base64.h */,
+				94FDC59A13C5AF290025B6FA /* NSData+Base64.m */,
+				94FDC59B13C5AF290025B6FA /* NSMutableAttributedString+HTML.h */,
+				94FDC59C13C5AF290025B6FA /* NSMutableAttributedString+HTML.m */,
+				94FDC59D13C5AF290025B6FA /* NSScanner+HTML.h */,
+				94FDC59E13C5AF290025B6FA /* NSScanner+HTML.m */,
+				94FDC59F13C5AF290025B6FA /* NSString+HTML.h */,
+				94FDC5A013C5AF290025B6FA /* NSString+HTML.m */,
+				94FDC5A113C5AF290025B6FA /* NSString+UTF8Cleaner.h */,
+				94FDC5A213C5AF290025B6FA /* NSString+UTF8Cleaner.m */,
+				94FDC5A313C5AF290025B6FA /* NSURL+HTML.h */,
+				94FDC5A413C5AF290025B6FA /* NSURL+HTML.m */,
+				94FDC5A513C5AF290025B6FA /* UIColor+HTML.h */,
+				94FDC5A613C5AF290025B6FA /* UIColor+HTML.m */,
+				94FDC5A713C5AF290025B6FA /* UIDevice+DTVersion.h */,
+				94FDC5A813C5AF290025B6FA /* UIDevice+DTVersion.m */,
+			);
+			name = "NSAttributedString-Additions-for-HTML";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -738,6 +879,31 @@
 				94CB89BF13B349B60046C335 /* NYXImagesHelper.m in Sources */,
 				94CB89C413B381620046C335 /* GTMNSString+HTML.m in Sources */,
 				9437450E13B4C53500EC5DF0 /* InitialisationViewController.m in Sources */,
+				94FDC5A913C5AF290025B6FA /* CGUtils.m in Sources */,
+				94FDC5AA13C5AF290025B6FA /* DTAttributedTextContentView.m in Sources */,
+				94FDC5AB13C5AF290025B6FA /* DTAttributedTextView.m in Sources */,
+				94FDC5AC13C5AF290025B6FA /* DTCoreTextFontCollection.m in Sources */,
+				94FDC5AD13C5AF290025B6FA /* DTCoreTextFontDescriptor.m in Sources */,
+				94FDC5AE13C5AF290025B6FA /* DTCoreTextGlyphRun.m in Sources */,
+				94FDC5AF13C5AF290025B6FA /* DTCoreTextLayouter.m in Sources */,
+				94FDC5B013C5AF290025B6FA /* DTCoreTextLayoutFrame.m in Sources */,
+				94FDC5B113C5AF290025B6FA /* DTCoreTextLayoutLine.m in Sources */,
+				94FDC5B213C5AF290025B6FA /* DTCoreTextParagraphStyle.m in Sources */,
+				94FDC5B313C5AF290025B6FA /* DTHTMLElement.m in Sources */,
+				94FDC5B413C5AF290025B6FA /* DTLazyImageView.m in Sources */,
+				94FDC5B513C5AF290025B6FA /* DTLinkButton.m in Sources */,
+				94FDC5B613C5AF290025B6FA /* DTTextAttachment.m in Sources */,
+				94FDC5B713C5AF290025B6FA /* NSAttributedString+HTML.m in Sources */,
+				94FDC5B813C5AF290025B6FA /* NSAttributedStringRunDelegates.m in Sources */,
+				94FDC5B913C5AF290025B6FA /* NSCharacterSet+HTML.m in Sources */,
+				94FDC5BA13C5AF290025B6FA /* NSData+Base64.m in Sources */,
+				94FDC5BB13C5AF290025B6FA /* NSMutableAttributedString+HTML.m in Sources */,
+				94FDC5BC13C5AF290025B6FA /* NSScanner+HTML.m in Sources */,
+				94FDC5BD13C5AF290025B6FA /* NSString+HTML.m in Sources */,
+				94FDC5BE13C5AF290025B6FA /* NSString+UTF8Cleaner.m in Sources */,
+				94FDC5BF13C5AF290025B6FA /* NSURL+HTML.m in Sources */,
+				94FDC5C013C5AF290025B6FA /* UIColor+HTML.m in Sources */,
+				94FDC5C113C5AF290025B6FA /* UIDevice+DTVersion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
