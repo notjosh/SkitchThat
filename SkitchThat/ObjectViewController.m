@@ -158,6 +158,17 @@ enum {
 
     [_tableView beginUpdates];
     [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:kObjectViewControllerTableSectionDetails inSection:kObjectViewControllerTableSectionDetailsRowDescription]] withRowAnimation:UITableViewRowAnimationNone];
+
+    if (_commentsSectionExpanded) {
+        NSMutableArray *indexes = [[NSMutableArray alloc] initWithCapacity:[_skitchComments count]];
+
+        for (NSInteger i = 0; i <= [_skitchComments count]; i++) {
+            [indexes addObject:[NSIndexPath indexPathForRow:i inSection:kObjectViewControllerTableSectionComments]];
+        }
+
+        [_tableView reloadRowsAtIndexPaths:indexes withRowAnimation:UITableViewRowAnimationNone];
+    }
+
     [_tableView endUpdates];
 }
 
@@ -279,7 +290,7 @@ enum {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *LabelCellIdentifier     = @"LabelTableCell";
-    static NSString *DescriptionCellIdentifier = @"DescriptionCellIdentifier";
+    static NSString *HtmlCellIdentifier      = @"HtmlCellIdentifier";
     static NSString *ThumbnailCellIdentifier = @"ThumbnailLabelTableCell";
     
     UITableViewCell *cell = nil;
@@ -309,10 +320,11 @@ enum {
                     break;
                 }
                 case kObjectViewControllerTableSectionDetailsRowDescription:
-                    cell = [tableView dequeueReusableCellWithIdentifier:DescriptionCellIdentifier];
+                    cell = [tableView dequeueReusableCellWithIdentifier:HtmlCellIdentifier];
                     if (cell == nil) {
-                        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:DescriptionCellIdentifier] autorelease];
+                        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:HtmlCellIdentifier] autorelease];
                     }
+                    [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
                     break;
                 case kObjectViewControllerTableSectionDetailsRowName:
                 case kObjectViewControllerTableSectionDetailsRowDimensions:
@@ -325,6 +337,23 @@ enum {
             }
             break;
         case kObjectViewControllerTableSectionComments:
+        {
+            if (!_commentsSectionExpanded || (0 == indexPath.row || indexPath.row == [_skitchComments count] + 1)) {
+                cell = [tableView dequeueReusableCellWithIdentifier:LabelCellIdentifier];
+                if (cell == nil) {
+                    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LabelCellIdentifier] autorelease];
+                }
+            } else {
+                // we have a comment row!
+                cell = [tableView dequeueReusableCellWithIdentifier:HtmlCellIdentifier];
+                if (cell == nil) {
+                    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:HtmlCellIdentifier] autorelease];
+                }
+                [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+            }
+
+            break;
+        }
         case kObjectViewControllerTableSectionLinks:
         default:
             cell = [tableView dequeueReusableCellWithIdentifier:LabelCellIdentifier];
@@ -385,12 +414,13 @@ enum {
                     } else {
                         // we have a comment row!
                         NSInteger idx = indexPath.row - 1;
-
-//                        NSDictionary *comment = [_skitchComments objectAtIndex:idx];
                         NSDictionary *comment = [_skitchComments objectAtIndex:idx];
 
-                        cell.textLabel.text = [comment objectForKey:@"comment"];
-                        cell.accessoryType = UITableViewCellAccessoryNone;
+                        DTAttributedTextContentView *contentView = [self contentViewForIndexPath:indexPath content:[comment objectForKey:@"comment"]];
+                        
+                        contentView.frame = cell.contentView.bounds;
+                        [cell.contentView addSubview:contentView];
+                        break;
                     }
 
                     break;
@@ -430,10 +460,30 @@ enum {
                 case kObjectViewControllerTableSectionDetailsRowDescription:
                 {
                     DTAttributedTextContentView *contentView = [self contentViewForIndexPath:indexPath content:_objectDescription];
-                    
+
                     return contentView.bounds.size.height + 1.0f; // for cell seperator
                 }
             }
+
+            break;
+
+        case kObjectViewControllerTableSectionComments:
+        {
+            if (!_commentsSectionExpanded) {
+                break;
+            }
+
+            if (indexPath.row > 0 && indexPath.row <= [_skitchComments count]) {
+                // we have a comment row!
+                NSInteger idx = indexPath.row - 1;
+                NSDictionary *comment = [_skitchComments objectAtIndex:idx];
+
+                DTAttributedTextContentView *contentView = [self contentViewForIndexPath:indexPath content:[comment objectForKey:@"comment"]];
+                return contentView.bounds.size.height + 1.0f; // for cell seperator
+            }
+            
+            break;
+        }
     }
 
     return [tableView rowHeight];
