@@ -13,6 +13,9 @@
 #import "UIImage+Resizing.h"
 #import "DTAttributedTextContentView.h"
 
+#import "DTLinkButton.h"
+#import "DTLazyImageView.h"
+
 #import "NJOSkitchConfig.h"
 #import "NJOSkitchResponse.h"
 #import "NJOSkitchService.h"
@@ -71,6 +74,8 @@ enum {
 @synthesize skitchComments = _skitchComments;
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
     [_guid release], _guid = nil;
     [_tableView release], _tableView = nil;
     [_shadowView release], _shadowView = nil;
@@ -97,6 +102,9 @@ enum {
         _commentsSectionExpanded = NO;
 
         _skitchComments = [[NSMutableArray alloc] init];
+
+		// register notifications
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lazyImageDidFinishLoading:) name:@"DTLazyImageViewDidFinishLoading" object:nil];
     }
     return self;
 }
@@ -223,13 +231,74 @@ enum {
 		CGFloat width = self.view.frame.size.width;
 		[DTAttributedTextContentView setLayerClass:nil];
 		contentView = [[[DTAttributedTextContentView alloc] initWithAttributedString:string width:width - 20.0] autorelease];
-		
+
+        contentView.delegate = self;
 		contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		contentView.edgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
 		[_contentViewCache setObject:contentView forKey:indexPath];
 	}
 
 	return contentView;
+}
+
+#pragma mark DTAttributedTextContentViewDelegate
+- (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForLink:(NSURL *)url identifier:(NSString *)identifier frame:(CGRect)frame {
+	DTLinkButton *button = [[[DTLinkButton alloc] initWithFrame:frame] autorelease];
+	button.url = url;
+	button.minimumHitSize = CGSizeMake(25, 25); // adjusts it's bounds so that button is always large enough
+	button.guid = identifier;
+
+	// use normal push action for opening URL
+	[button addTarget:self action:@selector(linkPushed:) forControlEvents:UIControlEventTouchUpInside];
+	
+	return button;
+}
+
+- (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForAttachment:(DTTextAttachment *)attachment frame:(CGRect)frame {
+	if (DTTextAttachmentTypeImage == attachment.contentType) {
+        NSLog(@"DTTextAttachmentTypeImage: %@", attachment.contentURL);
+
+		// if the attachment has a hyperlinkURL then this is currently ignored
+		DTLazyImageView *imageView = [[[DTLazyImageView alloc] initWithFrame:frame] autorelease];
+		if (attachment.contents) {
+			imageView.image = attachment.contents;
+		}
+		
+		// url for deferred loading
+		imageView.url = attachment.contentURL;
+		
+		return imageView;
+	}
+	
+	return nil;
+}
+
+- (void)linkPushed:(DTLinkButton *)button {
+	[[UIApplication sharedApplication] openURL:[button.url absoluteURL]];
+}
+
+- (void)lazyImageDidFinishLoading:(NSNotification *)notification {
+	NSDictionary *userInfo = [notification userInfo];
+	NSURL *url = [userInfo objectForKey:@"ImageURL"];
+	CGSize imageSize = [[userInfo objectForKey:@"ImageSize"] CGSizeValue];
+
+    NSLog(@"lazyImageDidFinishLoading");
+
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"contentURL == %@", url];
+	
+//	// update all attachments that matchin this URL (possibly multiple images with same size)
+//	for (DTTextAttachment *oneAttachment in [_textView.contentView.layoutFrame textAttachmentsWithPredicate:pred]) {
+//		oneAttachment.originalSize = imageSize;
+//		
+//		if (!CGSizeEqualToSize(imageSize, oneAttachment.displaySize)) {
+//			oneAttachment.displaySize = imageSize;
+//		}
+//	}
+	
+	// redo layout
+	// here we're layouting the entire string, might be more efficient to only relayout the paragraphs that contain these attachments
+//	[_textView.contentView relayoutText];
+    [_tableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource

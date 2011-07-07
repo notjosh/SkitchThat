@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#import "DTAttributedTextContentView.h"
 #import "NJOSkitchServiceDelegate.h"
 
 @class MBProgressHUD;
 
-@interface ObjectViewController : UIViewController <NJOSkitchServiceDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface ObjectViewController : UIViewController <NJOSkitchServiceDelegate, DTAttributedTextContentViewDelegate, UITableViewDataSource, UITableViewDelegate> {
     MBProgressHUD *_hud;
     NSMutableDictionary *_contentViewCache;
 
