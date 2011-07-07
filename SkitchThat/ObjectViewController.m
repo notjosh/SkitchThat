@@ -37,7 +37,7 @@ enum {
 enum {
     kObjectViewControllerTableSectionDetailsRowThumbnail,
     kObjectViewControllerTableSectionDetailsRowName,
-    kObjectViewControllerTableSectionDetailsRowDecscription,
+    kObjectViewControllerTableSectionDetailsRowDescription,
     kObjectViewControllerTableSectionDetailsRowDimensions,
     kObjectViewControllerTableSectionDetailsNumRows
 };
@@ -151,6 +151,14 @@ enum {
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [_contentViewCache removeAllObjects];
+
+    [_tableView beginUpdates];
+    [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:kObjectViewControllerTableSectionDetails inSection:kObjectViewControllerTableSectionDetailsRowDescription]] withRowAnimation:UITableViewRowAnimationNone];
+    [_tableView endUpdates];
 }
 
 #pragma mark - UITableViewDataSource
@@ -298,7 +306,7 @@ enum {
 
                     break;
                 }
-                case kObjectViewControllerTableSectionDetailsRowDecscription:
+                case kObjectViewControllerTableSectionDetailsRowDescription:
                     cell = [tableView dequeueReusableCellWithIdentifier:DescriptionCellIdentifier];
                     if (cell == nil) {
                         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:DescriptionCellIdentifier] autorelease];
@@ -345,7 +353,7 @@ enum {
                 case kObjectViewControllerTableSectionDetailsRowName:
                     cell.textLabel.text = _objectTitle;
                     break;
-                case kObjectViewControllerTableSectionDetailsRowDecscription:
+                case kObjectViewControllerTableSectionDetailsRowDescription:
                 {
                     DTAttributedTextContentView *contentView = [self contentViewForIndexPath:indexPath content:_objectDescription];
                     
@@ -417,7 +425,7 @@ enum {
                     return image.size.height + THUMBNAIL_CELL_PADDING * 2;
                 }
 
-                case kObjectViewControllerTableSectionDetailsRowDecscription:
+                case kObjectViewControllerTableSectionDetailsRowDescription:
                 {
                     DTAttributedTextContentView *contentView = [self contentViewForIndexPath:indexPath content:_objectDescription];
                     
