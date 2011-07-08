@@ -27,6 +27,10 @@
 #define THUMBNAIL_MAX_HEIGHT 100.0f
 #define THUMBNAIL_CELL_PADDING 10.0f
 
+CGFloat const kObjectViewControllerTitleFontSize = 16.0f;
+CGFloat const kObjectViewControllerDimensionsFontSize = 12.0f;
+CGFloat const kObjectViewControllerDetailsSeparatorPadding = 2.0f;
+
 enum {
     kObjectViewControllerTableSectionDetails,
     kObjectViewControllerTableSectionComments,
@@ -38,10 +42,8 @@ enum {
 };
 
 enum {
-    kObjectViewControllerTableSectionDetailsRowThumbnail,
-    kObjectViewControllerTableSectionDetailsRowName,
+    kObjectViewControllerTableSectionDetailsRowPrimaryDetails,
     kObjectViewControllerTableSectionDetailsRowDescription,
-    kObjectViewControllerTableSectionDetailsRowDimensions,
     kObjectViewControllerTableSectionDetailsNumRows
 };
 
@@ -64,6 +66,11 @@ enum {
 - (CGFloat) groupedCellMarginWithTableWidth:(CGFloat)tableViewWidth;
 
 - (CGSize)scaleSize:(CGSize)size toFitSize:(CGSize)maxSize;
+
+- (NSString *)dimensionsAsString;
+- (CGFloat)heightForTitle;
+- (CGFloat)heightForDimensions;
+- (CGFloat)heightForString:(NSString *)string fontSize:(CGFloat)fontSize;
 
 - (void)loadMoreComments;
 @end
@@ -95,6 +102,8 @@ enum {
     [_skitchResponse release], _skitchResponse = nil;
 
     [_thumbnailData release], _thumbnailData = nil;
+
+    [_titleLabel release], _titleLabel = nil;
 
     [super dealloc];
 }
@@ -165,10 +174,24 @@ enum {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+//- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+//    CGFloat xPos = [self groupedCellMarginWithTableWidth:CGRectGetWidth(_tableView.frame)] + THUMBNAIL_CELL_PADDING;
+//    
+//    if (_titleLabel) {
+//        _titleLabel.frame = CGRectMake(xPos, CGRectGetMaxY(_titleLabel.frame) - [self heightForTitle], [self maxWidthForTableView:_tableView], [self heightForTitle]);
+//    }
+//}
+
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [_contentViewCache removeAllObjects];
 
     [self resizeHtmlRows];
+
+    CGFloat xPos = [self groupedCellMarginWithTableWidth:CGRectGetWidth(_tableView.frame)] + THUMBNAIL_CELL_PADDING;
+    
+    if (_titleLabel) {
+        _titleLabel.frame = CGRectMake(xPos, CGRectGetMaxY(_titleLabel.frame) - [self heightForTitle], [self maxWidthForTableView:_tableView], [self heightForTitle]);
+    }
 }
 
 - (void)resizeHtmlRows {
@@ -360,7 +383,7 @@ enum {
         case kObjectViewControllerTableSectionDetails:
             return nil;
         case kObjectViewControllerTableSectionComments:
-            return [NSString stringWithFormat:@"Comments: (%@)", _commentsSectionExpanded ? @"Y" : @"N"];
+            return @"Comments";
         case kObjectViewControllerTableSectionLinks:
             return @"Links";
         case kObjectViewControllerTableSectionPrivacy:
@@ -377,7 +400,7 @@ enum {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *LabelCellIdentifier     = @"LabelTableCell";
     static NSString *HtmlCellIdentifier      = @"HtmlCellIdentifier";
-    static NSString *ThumbnailCellIdentifier = @"ThumbnailLabelTableCell";
+    static NSString *ThumbnailCellIdentifier = @"PrimaryDetailsTableCell";
     
     UITableViewCell *cell = nil;
 
@@ -385,11 +408,31 @@ enum {
         case kObjectViewControllerTableSectionDetails:
             cell.accessoryType = UITableViewCellAccessoryNone;
             switch (indexPath.row) {
-                case kObjectViewControllerTableSectionDetailsRowThumbnail:
+                case kObjectViewControllerTableSectionDetailsRowPrimaryDetails:
                 {
                     cell = [tableView dequeueReusableCellWithIdentifier:ThumbnailCellIdentifier];
                     if (cell == nil) {
                         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ThumbnailCellIdentifier] autorelease];
+
+                        if (nil == _titleLabel) {
+                            _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+                            _titleLabel.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin);
+                            _titleLabel.tag = 8;
+                            _titleLabel.font = [UIFont systemFontOfSize:kObjectViewControllerTitleFontSize];
+                            _titleLabel.textAlignment = UITextAlignmentCenter;
+                            _titleLabel.numberOfLines = 0;
+                            _titleLabel.lineBreakMode = UILineBreakModeWordWrap;
+                        }
+                        [cell addSubview:_titleLabel];
+
+                        UILabel *dimensionsLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+                        dimensionsLabel.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin);
+                        dimensionsLabel.tag = 9;
+                        dimensionsLabel.font = [UIFont systemFontOfSize:kObjectViewControllerDimensionsFontSize];
+                        dimensionsLabel.textColor = [UIColor lightGrayColor];
+                        dimensionsLabel.textAlignment = UITextAlignmentCenter;
+                        [cell addSubview:dimensionsLabel];
+                        [dimensionsLabel release];
                     }
 
                     _imageView.layer.cornerRadius = 6.0f;
@@ -411,14 +454,6 @@ enum {
                         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:HtmlCellIdentifier] autorelease];
                     }
                     [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-                    break;
-                case kObjectViewControllerTableSectionDetailsRowName:
-                case kObjectViewControllerTableSectionDetailsRowDimensions:
-                    cell = [tableView dequeueReusableCellWithIdentifier:LabelCellIdentifier];
-                    if (cell == nil) {
-                        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LabelCellIdentifier] autorelease];
-                    }
-
                     break;
             }
             break;
@@ -456,20 +491,32 @@ enum {
         case kObjectViewControllerTableSectionDetails:
             cell.accessoryType = UITableViewCellAccessoryNone;
             switch (indexPath.row) {
-                case kObjectViewControllerTableSectionDetailsRowThumbnail:
+                case kObjectViewControllerTableSectionDetailsRowPrimaryDetails:
                 {
                     UIImage *image = [self thumbnailImage];
                     _imageView.image = image;
                     _imageView.frame = CGRectMake(0.0f, 0.0f, image.size.width, image.size.height);
 
                     _shadowView.frame = _imageView.frame;
-                    _shadowView.center = CGPointMake(cell.center.x, image.size.height / 2 + THUMBNAIL_CELL_PADDING);
+                    _shadowView.center = CGPointMake(cell.center.x, image.size.height / 2 + THUMBNAIL_CELL_PADDING); 
+
+                    CGFloat xPos = [self groupedCellMarginWithTableWidth:CGRectGetWidth(tableView.frame)] + THUMBNAIL_CELL_PADDING;
+                    CGFloat yBottom = CGRectGetHeight(cell.frame) - (THUMBNAIL_CELL_PADDING + 1.0f); // 1.0f for the line separator
+
+                    UILabel *titleLabel = (UILabel *)[cell viewWithTag:8];
+                    if (titleLabel) {
+                        titleLabel.text = _objectTitle;
+                        titleLabel.frame = CGRectMake(xPos, yBottom - [self heightForTitle] - ([self heightForDimensions] + kObjectViewControllerDetailsSeparatorPadding), [self maxWidthForTableView:tableView], [self heightForTitle]);
+                    }
+
+                    UILabel *dimensionsLabel = (UILabel *)[cell viewWithTag:9];
+                    if (dimensionsLabel) {
+                        dimensionsLabel.text = [self dimensionsAsString];
+                        dimensionsLabel.frame = CGRectMake(xPos, yBottom - [self heightForDimensions], [self maxWidthForTableView:tableView], [self heightForDimensions]);
+                    }
 
                     break;
                 }
-                case kObjectViewControllerTableSectionDetailsRowName:
-                    cell.textLabel.text = _objectTitle;
-                    break;
                 case kObjectViewControllerTableSectionDetailsRowDescription:
                 {
                     DTAttributedTextContentView *contentView = [self contentViewForIndexPath:indexPath content:_objectDescription];
@@ -478,9 +525,6 @@ enum {
                     [cell.contentView addSubview:contentView];
                     break;
                 }
-                case kObjectViewControllerTableSectionDetailsRowDimensions:
-                    cell.textLabel.text = [NSString stringWithFormat:@"%dx%d", _objectWidth, _objectHeight];
-                    break;
             }
             break;
         case kObjectViewControllerTableSectionComments:
@@ -489,7 +533,11 @@ enum {
 
             switch (indexPath.row) {
                 case 0:
-                    cell.textLabel.text = [NSString stringWithFormat:@"Comments (%@)", _commentsSectionExpanded ? @"Y" : @"N"];
+                    if (_commentsSectionExpanded) {
+                        cell.textLabel.text = @"Hide Comments";
+                    } else {
+                        cell.textLabel.text = @"Show Comments";
+                    }
                     cell.accessoryType = UITableViewCellAccessoryNone;
                     break;
                     
@@ -532,7 +580,7 @@ enum {
     switch (indexPath.section) {
         case kObjectViewControllerTableSectionDetails:
             switch (indexPath.row) {
-                case kObjectViewControllerTableSectionDetailsRowThumbnail:
+                case kObjectViewControllerTableSectionDetailsRowPrimaryDetails:
                 {
                     UIImage *image = [self thumbnailImage];
 
@@ -540,7 +588,13 @@ enum {
                         return 0.0f;
                     }
 
-                    return image.size.height + THUMBNAIL_CELL_PADDING * 2;
+                    CGFloat imagePartHeight = image.size.height + THUMBNAIL_CELL_PADDING * 2;
+
+                    // add some room for labels
+                    CGFloat titleHeight = [self heightForTitle];
+                    CGFloat dimensionsHeight = [self heightForDimensions];
+
+                    return imagePartHeight + titleHeight + dimensionsHeight + kObjectViewControllerDetailsSeparatorPadding + THUMBNAIL_CELL_PADDING;
                 }
 
                 case kObjectViewControllerTableSectionDetailsRowDescription:
@@ -588,7 +642,7 @@ enum {
     switch (indexPath.section) {
         case kObjectViewControllerTableSectionDetails:
             switch (indexPath.row) {
-                case kObjectViewControllerTableSectionDetailsRowThumbnail:
+                case kObjectViewControllerTableSectionDetailsRowPrimaryDetails:
                 {
                     break;
                 }
@@ -709,10 +763,10 @@ enum {
 - (CGFloat)groupedCellMarginWithTableWidth:(CGFloat)tableViewWidth {
     CGFloat marginWidth;
     if (tableViewWidth > 20) {
-        if (tableViewWidth < 400) {
+        if (tableViewWidth <= 480) {
             marginWidth = 10;
         } else {
-            marginWidth = MAX(31, MIN(45, tableViewWidth*0.06));
+            marginWidth = MAX(31, MIN(45, tableViewWidth * 0.06));
         }
     } else {
         marginWidth = tableViewWidth - 10;
@@ -749,6 +803,28 @@ enum {
 	}
 
     return CGSizeMake(destWidth, destHeight);
+}
+
+- (NSString *)dimensionsAsString {
+    return [NSString stringWithFormat:@"%dx%d", _objectWidth, _objectHeight];
+}
+
+- (CGFloat)heightForTitle {
+    return [self heightForString:_objectTitle fontSize:kObjectViewControllerTitleFontSize];
+}
+
+- (CGFloat)heightForDimensions {
+    return [self heightForString:[self dimensionsAsString] fontSize:kObjectViewControllerDimensionsFontSize];
+}
+
+- (CGFloat)heightForString:(NSString *)string fontSize:(CGFloat)fontSize {
+    CGSize maximumLabelSize = CGSizeMake([self maxWidthForTableView:_tableView], 99999.0f);
+    
+    CGSize expectedLabelSize = [string sizeWithFont:[UIFont systemFontOfSize:fontSize] 
+                                      constrainedToSize:maximumLabelSize 
+                                          lineBreakMode:UILineBreakModeWordWrap];
+
+    return expectedLabelSize.height;
 }
 
 #pragma mark - Skitch API helpers

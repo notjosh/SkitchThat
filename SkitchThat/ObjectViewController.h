@@ -29,6 +29,8 @@
     BOOL _commentsSectionExpanded;
 
     NSData *_thumbnailData;
+
+    UILabel *_titleLabel;
 }
 
 @property (retain, nonatomic) NSString *guid;
