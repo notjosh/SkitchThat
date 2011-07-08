@@ -174,37 +174,29 @@ enum {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-//- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-//    CGFloat xPos = [self groupedCellMarginWithTableWidth:CGRectGetWidth(_tableView.frame)] + THUMBNAIL_CELL_PADDING;
-//    
-//    if (_titleLabel) {
-//        _titleLabel.frame = CGRectMake(xPos, CGRectGetMaxY(_titleLabel.frame) - [self heightForTitle], [self maxWidthForTableView:_tableView], [self heightForTitle]);
-//    }
-//}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    [_contentViewCache removeAllObjects];
-
-    [self resizeHtmlRows];
-
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     CGFloat xPos = [self groupedCellMarginWithTableWidth:CGRectGetWidth(_tableView.frame)] + THUMBNAIL_CELL_PADDING;
     
     if (_titleLabel) {
         _titleLabel.frame = CGRectMake(xPos, CGRectGetMaxY(_titleLabel.frame) - [self heightForTitle], [self maxWidthForTableView:_tableView], [self heightForTitle]);
     }
+
+    [_contentViewCache removeAllObjects];
+    
+    [self resizeHtmlRows];
 }
 
 - (void)resizeHtmlRows {
     [_tableView beginUpdates];
-    [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:kObjectViewControllerTableSectionDetails inSection:kObjectViewControllerTableSectionDetailsRowDescription]] withRowAnimation:UITableViewRowAnimationNone];
+    [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:kObjectViewControllerTableSectionDetailsRowDescription inSection:kObjectViewControllerTableSectionDetails]] withRowAnimation:UITableViewRowAnimationNone];
     
     if (_commentsSectionExpanded) {
         NSMutableArray *indexes = [[NSMutableArray alloc] initWithCapacity:[_skitchComments count]];
         
-        for (NSInteger i = 0; i <= [_skitchComments count]; i++) {
+        for (NSInteger i = 1; i <= [_skitchComments count]; i++) {
             [indexes addObject:[NSIndexPath indexPathForRow:i inSection:kObjectViewControllerTableSectionComments]];
         }
-        
+
         [_tableView reloadRowsAtIndexPaths:indexes withRowAnimation:UITableViewRowAnimationNone];
     }
     
@@ -601,7 +593,7 @@ enum {
                 {
                     DTAttributedTextContentView *contentView = [self contentViewForIndexPath:indexPath content:_objectDescription];
 
-                    return contentView.bounds.size.height + 1.0f; // for cell seperator
+                    return contentView.bounds.size.height + 8.0f; // for cell seperator and rounded bottom
                 }
             }
 
