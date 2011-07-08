@@ -55,11 +55,15 @@ enum {
 @property (retain, nonatomic) NSMutableArray *skitchComments;
 
 - (void)handleThumbnailTapped:(UITapGestureRecognizer *)sender;
+- (void)resizeHtmlRows;
 @end
 
 @interface ObjectViewController (Private)
 - (UIImage *)thumbnailImage;
+- (CGFloat)maxWidthForTableView:(UITableView *)tableView;
 - (CGFloat) groupedCellMarginWithTableWidth:(CGFloat)tableViewWidth;
+
+- (CGSize)scaleSize:(CGSize)size toFitSize:(CGSize)maxSize;
 
 - (void)loadMoreComments;
 @end
@@ -164,19 +168,23 @@ enum {
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [_contentViewCache removeAllObjects];
 
+    [self resizeHtmlRows];
+}
+
+- (void)resizeHtmlRows {
     [_tableView beginUpdates];
     [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:kObjectViewControllerTableSectionDetails inSection:kObjectViewControllerTableSectionDetailsRowDescription]] withRowAnimation:UITableViewRowAnimationNone];
-
+    
     if (_commentsSectionExpanded) {
         NSMutableArray *indexes = [[NSMutableArray alloc] initWithCapacity:[_skitchComments count]];
-
+        
         for (NSInteger i = 0; i <= [_skitchComments count]; i++) {
             [indexes addObject:[NSIndexPath indexPathForRow:i inSection:kObjectViewControllerTableSectionComments]];
         }
-
+        
         [_tableView reloadRowsAtIndexPaths:indexes withRowAnimation:UITableViewRowAnimationNone];
     }
-
+    
     [_tableView endUpdates];
 }
 
@@ -282,23 +290,32 @@ enum {
 	NSURL *url = [userInfo objectForKey:@"ImageURL"];
 	CGSize imageSize = [[userInfo objectForKey:@"ImageSize"] CGSizeValue];
 
-    NSLog(@"lazyImageDidFinishLoading");
-
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"contentURL == %@", url];
-	
-//	// update all attachments that matchin this URL (possibly multiple images with same size)
-//	for (DTTextAttachment *oneAttachment in [_textView.contentView.layoutFrame textAttachmentsWithPredicate:pred]) {
-//		oneAttachment.originalSize = imageSize;
-//		
-//		if (!CGSizeEqualToSize(imageSize, oneAttachment.displaySize)) {
-//			oneAttachment.displaySize = imageSize;
-//		}
-//	}
-	
-	// redo layout
-	// here we're layouting the entire string, might be more efficient to only relayout the paragraphs that contain these attachments
-//	[_textView.contentView relayoutText];
-    [_tableView reloadData];
+
+    [_contentViewCache enumerateKeysAndObjectsUsingBlock: ^(id key, id obj, BOOL *stop) {
+        NSAssert([obj isKindOfClass:[DTAttributedTextContentView class]], @"Contents of _contentCacheView is not all DTAttributedTextContentView");
+
+        DTAttributedTextContentView *textContentView = (DTAttributedTextContentView *)obj;
+
+        // update all attachments that matchin this URL (possibly multiple images with same size)
+        for (DTTextAttachment *oneAttachment in [textContentView.layoutFrame textAttachmentsWithPredicate:pred]) {
+            oneAttachment.originalSize = imageSize;
+
+            if (!CGSizeEqualToSize(imageSize, oneAttachment.displaySize)) {
+                oneAttachment.displaySize = imageSize;
+            }
+
+            if (oneAttachment.displaySize.width > CGRectGetWidth(textContentView.frame)) {
+                oneAttachment.displaySize = [self scaleSize:imageSize toFitSize:CGSizeMake(CGRectGetWidth(textContentView.frame) - (textContentView.edgeInsets.left + textContentView.edgeInsets.right), imageSize.height)];
+            }
+        }
+        
+        // redo layout
+        // here we're layouting the entire string, might be more efficient to only relayout the paragraphs that contain these attachments
+        [textContentView relayoutText];
+    }];
+
+    [self resizeHtmlRows];
 }
 
 #pragma mark - UITableViewDataSource
@@ -674,7 +691,7 @@ enum {
 
     UIImage *image = [UIImage imageWithData:_thumbnailData];
 
-    CGFloat maxWidth = CGRectGetWidth(_tableView.frame) - THUMBNAIL_CELL_PADDING * 2 - [self groupedCellMarginWithTableWidth:CGRectGetWidth(_tableView.frame)] * 2;
+    CGFloat maxWidth = [self maxWidthForTableView:_tableView];
 
     // don't grow bigger than image size is!
     if (maxWidth > image.size.width && THUMBNAIL_MAX_HEIGHT > image.size.height) {
@@ -682,6 +699,10 @@ enum {
     }
 
     return [image scaleToFitSize:CGSizeMake(maxWidth, THUMBNAIL_MAX_HEIGHT)];
+}
+
+- (CGFloat)maxWidthForTableView:(UITableView *)tableView {
+    return CGRectGetWidth(tableView.frame) - THUMBNAIL_CELL_PADDING * 2 - [self groupedCellMarginWithTableWidth:CGRectGetWidth(tableView.frame)] * 2;
 }
 
 // voodoo. http://stackoverflow.com/questions/4708085/how-to-determine-margin-of-a-grouped-uitableview-or-better-how-to-set-it/4872199#4872199
@@ -698,6 +719,36 @@ enum {
     }
 
     return marginWidth;
+}
+
+- (CGSize)scaleSize:(CGSize)size toFitSize:(CGSize)maxSize {
+	const size_t originalWidth = size.width;
+	const size_t originalHeight = size.height;
+    
+	/// Keep aspect ratio
+	size_t destWidth, destHeight;
+	if (originalWidth > originalHeight)
+	{
+		destWidth = maxSize.width;
+		destHeight = originalHeight * maxSize.width / originalWidth;
+	}
+	else
+	{
+		destHeight = maxSize.height;
+		destWidth = originalWidth * maxSize.height / originalHeight;
+	}
+	if (destWidth > maxSize.width)
+	{ 
+		destWidth = maxSize.width; 
+		destHeight = originalHeight * maxSize.width / originalWidth; 
+	} 
+	if (destHeight > maxSize.height)
+	{ 
+		destHeight = maxSize.height; 
+		destWidth = originalWidth * maxSize.height / originalHeight; 
+	}
+
+    return CGSizeMake(destWidth, destHeight);
 }
 
 #pragma mark - Skitch API helpers
